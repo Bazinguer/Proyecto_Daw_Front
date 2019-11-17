@@ -1,0 +1,86 @@
+html,
+body {
+	height: 100%;
+	background-image: url("../img/fondoapp2.jpeg"); 
+	background-position: center; 
+	background-size: cover;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+body.login_register {
+	/*background: violet;
+	*/
+	font-size: 14px;
+}
+
+.login_register .brand {
+	width: 90px;
+	height: 90px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 10px auto;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+	position: relative;
+	z-index: 1;
+}
+
+.login_register .brand img {
+	width: 100%;
+}
+
+.login_register .card-wrapper {
+	width: 400px;
+	margin: 0px auto;
+}
+
+.login_register .card {
+	border-color: transparent;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
+}
+
+.login_register .card.fat {
+	padding: 10px;
+	opacity: 70%;
+	border-radius: 20px;
+	justify-content: center;
+}
+
+.login_register .card .card-title {
+	margin-bottom: 30px;
+}
+
+.login_register .form-control {
+	border-width: 2.3px;
+}
+
+.login_register .form-group label {
+	width: 100%;
+}
+
+.login_register .btn.btn-block {
+	padding: 12px 10px;
+}
+
+.login_register .footer {
+	margin: 20px 0;
+	color: rgb(255, 255, 255);
+	text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+	.login_register .card-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.login_register .card.fat {
+		padding: 0;
+	}
+
+	.login_register .card.fat .card-body {
+		padding: 15px;
+	}
+}
