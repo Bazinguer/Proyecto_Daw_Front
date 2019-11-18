@@ -14,6 +14,14 @@ body.login_register {
 	font-size: 14px;
 }
 
+#alert {
+	display: none;		
+}
+
+#alert > div > p {
+	margin-block-end: 0px;
+}
+
 .login_register .brand {
 	width: 90px;
 	height: 90px;
@@ -40,15 +48,16 @@ body.login_register {
 }
 
 .login_register .card.fat {
-	padding: 10px;
+	padding: 5px;
 	opacity: 70%;
 	border-radius: 20px;
 	justify-content: center;
 }
 
 .login_register .card .card-title {
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
+
 
 .login_register .form-control {
 	border-width: 2.3px;
@@ -67,6 +76,11 @@ body.login_register {
 	color: rgb(255, 255, 255);
 	text-align: center;
 }
+
+.error{
+	border: solid 2px #FF0000;
+	}
+
 
 @media screen and (max-width: 425px) {
 	.login_register .card-wrapper {
