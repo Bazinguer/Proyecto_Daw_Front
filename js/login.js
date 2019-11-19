@@ -1,71 +1,118 @@
-'use strict';
+window.onload = eventsLoad;
 
-$(function() {
+function eventsLoad() {
+	checkCookie();
+	document.getElementById("btnLogin").addEventListener("click", validateLogin, true);
+}
 
-	// author badge :)
-	var author = '<div style="position: fixed;bottom: 0;right: 20px;background-color: #fff;box-shadow: 0 4px 8px rgba(0,0,0,.05);border-radius: 3px 3px 0 0;font-size: 12px;padding: 5px 10px;">By <a href="https://twitter.com/mhdnauvalazhar">@mhdnauvalazhar</a> &nbsp;&bull;&nbsp; <a href="https://www.buymeacoffee.com/mhdnauvalazhar">Buy me a Coffee</a></div>';
-	$("body").append(author);
+function validateLogin(event) {
+	event.preventDefault();
 
-	$("input[type='password'][data-eye]").each(function(i) {
-		var $this = $(this),
-			id = 'eye-password-' + i,
-			el = $('#' + id);
+	var email = document.getElementById("emailLogin");
+	var password = document.getElementById("passwordLogin");
 
-		$this.wrap($("<div/>", {
-			style: 'position:relative',
-			id: id
-		}));
+	var check = document.getElementById("remember");
 
-		$this.css({
-			paddingRight: 60
-		});
-		$this.after($("<div/>", {
-			html: 'Show',
-			class: 'btn btn-primary btn-sm',
-			id: 'passeye-toggle-'+i,
-		}).css({
-				position: 'absolute',
-				right: 10,
-				top: ($this.outerHeight() / 2) - 12,
-				padding: '2px 7px',
-				fontSize: 12,
-				cursor: 'pointer',
-		}));
+	if (checkRemember(check)) {
+		document.cookie = "email = " + email.value;
+	} else {
+		document.cookie = "email = ";
+	}
 
-		$this.after($("<input/>", {
-			type: 'hidden',
-			id: 'passeye-' + i
-		}));
+	//si todo valida, enviamos petición de buscar usuario
+	if (validateMail(email) && validatePassword(password)) {
 
-		var invalid_feedback = $this.parent().parent().find('.invalid-feedback');
+		if (confirm("Todo validado correctamente.")) {
 
-		if(invalid_feedback.length) {
-			$this.after(invalid_feedback.clone());
+			alert("Petición de usuario: \n email: " + email.value + " \n password: " + password.value);
+
+			//document.getElementById("register-validation").submit();        
 		}
 
-		$this.on("keyup paste", function() {
-			$("#passeye-"+i).val($(this).val());
-		});
-		$("#passeye-toggle-"+i).on("click", function() {
-			if($this.hasClass("show")) {
-				$this.attr('type', 'password');
-				$this.removeClass("show");
-				$(this).removeClass("btn-outline-primary");
-			}else{
-				$this.attr('type', 'text');
-				$this.val($("#passeye-"+i).val());				
-				$this.addClass("show");
-				$(this).addClass("btn-outline-primary");
-			}
-		});
-	});
+	}
+}
 
-	$(".login-validation").submit(function() {
-		var form = $(this);
-        if (form[0].checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-		form.addClass('was-validated');
-	});
-});
+
+function validateMail(element) {
+	//estructura de un mail:  nombre de usuario + @ + servidor + dominio
+	//[a-zA-Z0-9._-]+ hace que se repitan letras, números, puntos (.), guiones bajos (_) o guiones (-).
+	//a continuación la @ (solo una): +@
+	//repetimos la primera [a-zA-Z0-9._-]+
+	//el dominio irá al final,tras un punto y podrá tener 2,3,4 letras (.es,.com,.info....): \.([a-zA-Z]{2,4})+$
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("alertMessage");
+	var valor = element.value;
+	var expReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/;
+
+	if (!expReg.test(valor)) {
+		alert.style.display = "inline";
+		alertMessage.innerHTML = "El correo introducido no es válido.";
+		element.classList.add("error");
+		element.focus();
+		return false;
+	} else {
+		alertMessage.innerHTML = "";
+		element.classList.remove("error");
+		alert.style.display = "none";
+		return true;
+	}
+}
+
+function validatePassword(element) {
+	//recogemos el valor y el nombre del input para saber el element que tratamos 
+	//y poder devolverle el foco      
+	var string = element.value;
+	var alert = document.getElementById("alert");
+	var alertMessage = document.getElementById("alertMessage");
+
+	if (string == "" || string == null) {
+		alert.style.display = "inline";
+		element.classList.add("error");
+		alertMessage.innerHTML = "La contraseña no puede ir vacía."
+		element.focus();
+		return false;
+
+	} else if (string.length < 5) {
+		alert.style.display = "inline";
+		alertMessage.innerHTML = "Las contraseñas deben tener un minímo de 5 carácteres.";
+		element.focus();
+		element.classList.add("error");
+		//element.className = "error";
+		return false;
+	} else {
+		alertMessage.innerHTML = "";
+		element.classList.remove("error");
+		alert.style.display = "none";
+		element.placeholder = "";
+		return true;
+	}
+}
+
+function checkRemember(element) {
+	var isChecked = element.checked;
+
+	if (isChecked) {
+		return true;
+
+	} else {
+		return false;
+	}
+}
+
+function getCookie() {
+	//Esta función la usamos para recuperar la cookie
+	var cookie = document.cookie;
+	var resultado = cookie.split('=');
+	return resultado[1];
+}
+
+function checkCookie() {
+	var mail = getCookie("email");
+
+	if (mail === "undefined") {
+		document.getElementById("emailLogin").value = getCookie("email");
+	} else {
+		document.getElementById("emailLogin").value = mail;
+	}
+
+}

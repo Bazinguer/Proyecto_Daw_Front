@@ -1,10 +1,10 @@
 window.onload = eventsLoad;
 
 function eventsLoad() {
-    document.getElementById("btnLogin").addEventListener("click", validateLogin, true);
+    document.getElementById("btnRegister").addEventListener("click", validateRegistration, true);
 }
 
-function validateLogin(event) {
+function validateRegistration(event) {
     event.preventDefault();
 
     var name = document.getElementById("name");
@@ -20,19 +20,29 @@ function validateLogin(event) {
         validateRepeatPassword(password, repeatPassword) && validateBornDate(bornDate) &&
         validateTerms(agree)) {
 
-    if (confirm("Todo validado correctamente.")) {
+        if (confirm("Todo validado correctamente.")) {
 
-        alert("wawawiwa");
+            var newUser = new User(name,email,password,bornDate);
 
-        //document.getElementById("register-validation").submit();
-        
-    }
-        
-        
+            /**
+            newUser.name = name;
+            newUser.email = email;
+            newUser.password = password;
+            newUser.bornDate = bornDate;
+             */
+
+
+            alert(newUser.toString);
+
+            //document.getElementById("register-validation").submit();
+
+        }
+
+
     }
 }
 
-function validateName(element) {    
+function validateName(element) {
     var string = element.value;
     var alert = document.getElementById("alert");
     var alertMessage = document.getElementById("alertMessage");
@@ -41,18 +51,18 @@ function validateName(element) {
         alert.style.display = "inline";
         alertMessage.innerHTML = "El nombre es obligatorio.";
         element.focus();
-        element.classList.add("error");      
+        element.classList.add("error");
         return false;
     } else if (string.length < 3) {
         alert.style.display = "inline";
         alertMessage.innerHTML = "El nombre tiene que tener minímo 3 carácteres.";
         element.focus();
-        element.classList.add("error");     
+        element.classList.add("error");
         return false;
     } else {
         alertMessage.innerHTML = "";
         element.classList.remove("error");
-        alert.style.display = "none";        
+        alert.style.display = "none";
         return true;
     }
 
@@ -189,16 +199,16 @@ function validateTerms(element) {
     if (isChecked) {
         alertMessage.innerHTML = "";
         element.classList.remove("error");
-        alert.style.display = "none";        
+        alert.style.display = "none";
         return true;
-        
+
     } else {
         alert.style.display = "inline";
         alertMessage.innerHTML = "Debe aceptar los términos y condiciones.";
         element.classList.add("error");
         element.focus();
         return false;
-        
+
     }
 
 }
