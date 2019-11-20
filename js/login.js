@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 window.onload = eventsLoad;
 
 function eventsLoad() {
@@ -119,4 +116,3 @@ function checkCookie() {
 	}
 
 }
->>>>>>> master
