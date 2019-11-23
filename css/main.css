@@ -1,10 +1,12 @@
 body{
-    background-color: #f8f9fa;
+    background-color: #F8F9FA;;
 }
-.flex-sm-fill:hover{   
-    background-color: blue;
+/*
+a:hover{   
+    background-color: #cfcfcf;
     color: brown;
-}
+    border-radius: 10px;
+} */
 
 @media (max-width: 992px) {
     .form-inline {
@@ -13,6 +15,10 @@ body{
     
     #ocultar{
         display: none;
+    }
+
+    #searcher{
+        padding-top: 15px;
     }
   
 }
