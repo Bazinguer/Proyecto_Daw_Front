@@ -19,9 +19,9 @@ function eventsLoad() {
 
 /***************************** INPUTS ********************************/
 function validateName(element) {
-    var string = element.value;
-    var alert = document.getElementById("alert");
-    var alertMessage = document.getElementById("alertMessage");
+    let string = element.value;
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
 
     if (string == "" || string == null) {
         alert.style.display = "inline";
@@ -50,10 +50,10 @@ function validateMail(element) {
     //a continuación la @ (solo una): +@
     //repetimos la primera [a-zA-Z0-9._-]+
     //el dominio irá al final,tras un punto y podrá tener 2,3,4 letras (.es,.com,.info....): \.([a-zA-Z]{2,4})+$
-    var alert = document.getElementById("alert");
-    var alertMessage = document.getElementById("alertMessage");
-    var valor = element.value;
-    var expReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/;
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
+    let valor = element.value;
+    let expReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/;
 
     if (!expReg.test(valor)) {
         alert.style.display = "inline";
@@ -72,10 +72,10 @@ function validateMail(element) {
 function validatePassword(element) {
     //recogemos el valor y el nombre del input para saber el element que tratamos 
     //y poder devolverle el foco      
-    var string = element.value;
-    var alert = document.getElementById("alert");
-    var alertMessage = document.getElementById("alertMessage");
-    var message = "";
+    let string = element.value;
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
+    let message = "";
 
     if (string == "" || string == null) {
         alert.style.display = "inline";
@@ -116,10 +116,10 @@ function validatePassword(element) {
 }
 
 function validateRepeatPassword(element, elementCompare) {
-    var alert = document.getElementById("alert");
-    var alertMessage = document.getElementById("alertMessage");
-    var string = element.value;
-    var stringCompare = elementCompare.value;
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
+    let string = element.value;
+    let stringCompare = elementCompare.value;
 
     if (string === stringCompare) {
         alertMessage.innerHTML = "";
@@ -144,14 +144,14 @@ function validateBornDate(element) {
     //para validater la fecha, compruebo si puedo construir una fecha con 
     //los datos que facilita el usuario. De no ser capaz de construirla habrá un error
     //por el formato gracias al type="date" ya va en formato dd/mm/aaaa.
-    var alert = document.getElementById("alert");
-    var alertMessage = document.getElementById("alertMessage");
-    var valor = element.value;
-    var ano = parseInt(valor.substring(0, 4));
-    var mes = parseInt(valor.substring(5, 7)) - 1;
-    var dia = parseInt(valor.substring(8, valor.length));
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
+    let valor = element.value;
+    let ano = parseInt(valor.substring(0, 4));
+    let mes = parseInt(valor.substring(5, 7)) - 1;
+    let dia = parseInt(valor.substring(8, valor.length));
 
-    var fch = new Date(ano, mes, dia);
+    let fch = new Date(ano, mes, dia);
     //console.log(fch);
     //console.log(isNaN(fch));
 
@@ -180,8 +180,8 @@ function validateBornDate(element) {
 
 function cleanErrores(listElements) {
     //limpiamos algún posible error de otra parte del formulario
-    var errores = listElements;
-    for (var i = 0; i < errores.length; i++) {
+    let errores = listElements;
+    for (let i = 0; i < errores.length; i++) {
         errores[i].classList.remove("error");
     }
 }
@@ -189,9 +189,9 @@ function cleanErrores(listElements) {
 /***************************** CHEKS ********************************/
 function validateTerms(element) {
 
-    var alert = document.getElementById("alert");
-    var alertMessage = document.getElementById("alertMessage");
-    var isChecked = element.checked;
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
+    let isChecked = element.checked;
 
     console.log(isChecked);
 
@@ -212,7 +212,7 @@ function validateTerms(element) {
 }
 
 function checkRemember(element) {
-    var isChecked = element.checked;
+    let isChecked = element.checked;
 
     if (isChecked) {
         return true;
@@ -228,10 +228,10 @@ function checkRemember(element) {
 function validateLogin(event) {
     event.preventDefault();
 
-    var email = document.getElementById("emailLogin");
-    var password = document.getElementById("passwordLogin");
+    let email = document.getElementById("emailLogin");
+    let password = document.getElementById("passwordLogin");
 
-    var check = document.getElementById("remember");
+    let check = document.getElementById("remember");
 
     if (checkRemember(check)) {
         document.cookie = "email = " + email.value;
@@ -260,12 +260,12 @@ function validateLogin(event) {
 function validateRegistration(event) {
     event.preventDefault();
 
-    var name = document.getElementById("name");
-    var email = document.getElementById("email");
-    var password = document.getElementById("password");
-    var repeatPassword = document.getElementById("repeatPassword");
-    var bornDate = document.getElementById("bornDate");
-    var agree = document.getElementById("agree");
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let repeatPassword = document.getElementById("repeatPassword");
+    let bornDate = document.getElementById("bornDate");
+    let agree = document.getElementById("agree");
 
     //si todo valida, enviamos petición de buscar usuario
     if (validateName(name) && validateMail(email) &&
@@ -275,7 +275,7 @@ function validateRegistration(event) {
 
         if (confirm("Todo validado correctamente.")) {
 
-            var newUser = new User(name, email, password, bornDate);
+            const newUser = new User(name, email, password, bornDate);
 
             /**
             newUser.name = name;
@@ -300,13 +300,13 @@ function validateRegistration(event) {
  **************************************/
 function getCookie() {
     //Esta función la usamos para recuperar la cookie
-    var cookie = document.cookie;
-    var resultado = cookie.split('=');
+    let cookie = document.cookie;
+    let resultado = cookie.split('=');
     return resultado[1];
 }
 
 function checkCookie() {
-    var mail = getCookie("email");
+    let mail = getCookie("email");
 
     if (mail === undefined) {
         document.getElementById("emailLogin").value = "";

@@ -10,7 +10,7 @@
     <!-- minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Personal CSS -->
-    <link rel="stylesheet" type="text/css" href="css/login_register.css">
+    <link rel="stylesheet" href="css/main.css">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -22,77 +22,130 @@
 </head>
 
 <body>
-    
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
+    <div class="container-fluid">
+        <div class="fixed-top text-center mt-1 pb-1 d-sm-block d-md-block d-lg-none"
+            style="position: fixed; top: 5px; left: 45%;width: 12%;">
+            <img class="img-thumbnail" style="width: 60; height: 60px;"
+                src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
         </div>
-    </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-bottom: 11px;">
+            <div class="d-flex flex-grow-1 ml-4">
+                <div class="w-100 text-right">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
 
-    
+            <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+                <!--
+                <a class="navbar-brand d-none d-lg-inline-block" href="#">
+                    <img class="img-thumbnail" style="width: 60; height: 60px;"
+                        src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
+                </a> -->
 
-    <div class="container" style="margin-top:30px">
-        <div class="row">
-            <div class="col-sm-4">
-                <h2>About Me</h2>
-                <h5>Photo of me:</h5>
-                <div class="fakeimg">Fake Image</div>
-                <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-                <h3>Some Links</h3>
-                <p>Lorem ipsum dolor sit ame.</p>
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Active</a>
+                <ul class="navbar-nav ml-auto flex-nowrap">
+                    
+                    <li class="nav-item" id="ocultar">
+                        <a href="#" class="nav-link m-2 menu-item nav-active">
+                            <img class="img-thumbnail" style="width: 60; height: 60px;"
+                                src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
+                        </a>
+                    </li>
+
+                    <li class="nav-item w-15">
+                        <a href="#" class="nav-link m-2 mt-4 menu-item nav-active">Our Solution</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a href="#" class="nav-link m-2 mt-4 menu-item">How We Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a href="#" class="nav-link m-2 mt-4 menu-item">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a href="#" class="nav-link m-2 mt-4 menu-item">Contact</a>
                     </li>
                 </ul>
-                <hr class="d-sm-none">
+                <div class="p-1 ml-3">
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">@</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                aria-describedby="basic-addon1">
+                            <button class="btn btn-sm btn-outline-secondary ml-1" type="submit">Buscar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-sm-8">
-                <h2>TITLE HEADING</h2>
-                <h5>Title description, Dec 7, 2017</h5>
-                <div class="fakeimg">Fake Image</div>
-                <p>Some text..</p>
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco.</p>
-                <br>
-                <h2>TITLE HEADING</h2>
-                <h5>Title description, Sep 2, 2017</h5>
-                <div class="fakeimg">Fake Image</div>
-                <p>Some text..</p>
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco.</p>
+        </nav>
+        <div class="row">
+            <div class="col-2 mt-5">
+                <div class="container">
+                    <!-- mt-5-->
+                    <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" alt="..."
+                        class="rounded-circle img-thumbnail d-none d-md-block d-lg-block">
+                </div>
+                <div class="container">
+                    <nav class="nav nav-pills ml-auto text-justify">
+                        <div class="w-100">
+                            <a class="flex-md-fill text-sm-center nav-link" href="#">Active</a>
+                        </div>
+                        <div class="w-100">
+                            <a class="flex-md-fill text-sm-center nav-link" href="#">Active</a>
+                        </div>
+                        <div class="w-100">
+                            <a class="flex-sm-fill text-sm-center nav-link" href="#">Active</a>
+                        </div>
+                        <div class="w-100">
+                            <a class="flex-sm-fill text-sm-center nav-link" href="#">Active</a>
+                        </div>
+                    </nav>
+                </div>
+                <p>ESTAMOS NA COLUMNA 1</p>
+            </div>
+            <div class="col-sm">
+                <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                            aria-controls="contact" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Lorem
+                        ipsum dolor sit amet consectetur adipisicing elit. Quia adipisci quis sit. Quos maxime dolorum
+                        voluptates perferendis placeat eius impedit, quia earum, consectetur veritatis, quod aperiam
+                        praesentium at! Veniam, quasi?</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Lorem ipsum
+                        dolor sit, amet consectetur adipisicing elit. Omnis placeat eligendi asperiores ex sit? Nobis,
+                        illum rerum cupiditate, officia culpa fugit maxime voluptatibus modi, molestias quaerat expedita
+                        quasi vel numquam.</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lorem ipsum
+                        dolor sit amet consectetur adipisicing elit. Molestiae fuga eius magnam beatae. Consequatur id
+                        fugit hic illo iure aliquam eveniet beatae ipsum voluptas sint animi odio necessitatibus,
+                        assumenda tempora.</div>
+                </div>
+
+                ESTAMOS NA COLUMNA 2
+
             </div>
         </div>
     </div>
-
-    <div class="jumbotron text-center" style="margin-bottom:0">
-        <p>Footer</p>
+    <div class="footer jumbotron-fluid text-center">
+        <div class="container">
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
+            </p>
+        </div>
     </div>
 
 </body>
