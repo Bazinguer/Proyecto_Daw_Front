@@ -1,6 +1,29 @@
 body{
-    background-color: #F8F9FA;;
+    background-color: #ffffff;
 }
+
+#searcher{
+    padding-right: 28px;
+}
+
+#favoritos .list-group-item .img-fluid{
+    max-height: 100px;
+    max-width: 100px;
+}
+
+
+.bg-info {
+    background-color: #ffffff !important;
+}
+
+.change-icon > .fas + .fas,
+.change-icon:hover > .fas {
+  display: none;
+}
+.change-icon:hover > .fas + .fas {
+  display: inherit;
+}
+
 /*
 a:hover{   
     background-color: #cfcfcf;
@@ -8,7 +31,7 @@ a:hover{
     border-radius: 10px;
 } */
 
-@media (max-width: 992px) {
+@media (max-width: 991.98px) {
     .form-inline {
         float: right;
     }       
@@ -18,7 +41,62 @@ a:hover{
     }
 
     #searcher{
-        padding-top: 15px;
+        padding-top: 5px;
+        padding-right: 16px;
+    }  
+
+    #favoritos .list-group-item .img-fluid{
+        max-height: 80px;
+        max-width: 80px;
+    }
+
+    #colum1{
+        padding-right: 0px; 
+        padding-left: 0px;
     }
   
 }
+
+@media (max-width: 767.98px) { 
+    #colum1{
+        display: none;
+    }
+    .bg-info > .btn {
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
+   
+}
+
+@media (max-width: 575.5px) { 
+   
+    .bg-info > .btn {
+        float: right !important;
+    }
+
+    .col-2 {
+        max-width: 100%;
+        margin-left: 30%;
+    }
+   
+}
+
+@media (max-width: 503.5px) { 
+   
+    .bg-info > .btn {
+        float: right !important;
+    }   
+}
+
+/* Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) { ... }
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) { ... }
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) { ... }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) { ... }
+*/

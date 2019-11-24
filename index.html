@@ -10,6 +10,7 @@
     <!-- minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Personal CSS -->
+    <link rel="stylesheet" href="fontawesome-free-5.11.2-web/css/all.css">
     <link rel="stylesheet" href="css/main.css">
 
     <!-- Optional JavaScript -->
@@ -23,63 +24,68 @@
 
 <body>
 
-    <div class="container-fluid">
-        <div class="fixed-top text-center mt-1 pb-1 d-sm-block d-md-block d-lg-none"
-            style="position: fixed; top: 5px; left: 45%;width: 12%;">
-            <img class="img-thumbnail" style="width: 60; height: 60px;"
-                src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- NavBar TOP -->
+    <div class="container-fluid text-right" style="padding-right: 0%;">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="d-flex flex-grow-1 ml-4">
                 <div class="w-100 text-right">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <div class="d-none d-md-none d-lg-block w-100 pl-5 ml-5">
+                        <img class="img-thumbnail" style="width: 80; height: 80px;"
+                            src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
+                    </div>
+                    <div class="d-block d-md-block d-lg-none w-100">
+
+                        <img class="img-thumbnail" style="width: 60; height: 60px; margin-right: 35%;"
+                            src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
                 <ul class="navbar-nav ml-auto flex-nowrap">
-                    <li class="nav-item" id="ocultar">
-                        <a href="#" class="nav-link m-2 menu-item nav-active">
-                            <img class="img-thumbnail" style="width: 60; height: 60px;"
-                                src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
-                        </a>
-                    </li>
-
                     <li class="nav-item w-15">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item nav-active">Our Solution</a>
+                        <a href="#" class="nav-link m-2 mt-4 menu-item nav-active">Mapa</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item">How We Help</a>
+                        <a href="#" class="nav-link m-2 mt-4 menu-item">Configuración</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item">Contact</a>
+                        <a href="#" class="nav-link m-2 mt-4 menu-item">Cerrar sesión</a>
                     </li>
                 </ul>
-                <!--
-                <div class="p-1 ml-3">
-                    <form class="form-inline">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                            <button class="btn btn-sm btn-outline-secondary ml-1" type="submit">Buscar</button>
-                        </div>
-                    </form>
-                </div>
-            -->
             </div>
-        </nav>
 
+        </nav>
+    </div>
+
+    <hr width="95%">
+
+    <!-- Contedor Principal -->
+    <div class="container-fluid">
+        <!-- Fila Principal -->
         <div class="row">
+            <!-- buscador principal/Perfil -->
             <div class="container-fluid" id="searcher">
-                
+
+
+                <div class="bg-info">
+
+                    <button class="btn btn-outline-secondary dropdown-toggle float-left  d-sm-block d-md-none d-lg-none"
+                        type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        @Perfil
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">@Prins</a>
+                        <a class="dropdown-item" href="#">@Locke</a>
+                        <a class="dropdown-item" href="#">@Sivha</a>
+                        <a class="dropdown-item" href="#">Crear perfil</a>
+                    </div>
+
                     <form class="form-inline w-35" style="float: right;">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -90,33 +96,81 @@
                             <button class="btn btn-sm btn-outline-secondary ml-1" type="submit">Buscar</button>
                         </div>
                     </form>
-               
+                </div>
+
 
             </div>
-            <div class="col-2 mt-3">
+            <!-- Columna 1 de la fila Principal -->
+            <div class="col-2 mt-3" id="colum1">
                 <div class="container">
-                    <!-- mt-5-->
-                    <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" alt="..."
-                        class="img-thumbnail d-none d-md-block d-lg-block">
+                    <div class="card">
+                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top" alt="...">
+
+                        <h5 class="card-title text-center pt-2">@Blanca</h5>
+                    </div>
+
+                    <div class="card" style="margin-top: 10px;">
+                        <div class="card-body">
+
+                                <div class="bg-info pb-3">                                 
+                                   
+                                        <h6 class="float-left">Perfil</h6>                              
+                                  
+                                        <a href="#" class="change-icon">
+                                                <i class="fas fa-plus fa-lg"
+                                                style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i> 
+                                            <i class="fas fa-plus-circle fa-lg"
+                                                style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i> 
+                                        </a>
+                                    </div>  
+
+                                <hr>
+
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio1" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio1">@Blanca</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio2" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio2">@Prins</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio3" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio3">@Locke</label>
+                                </div>
+                                
+                                <!--
+                                <div class="container text-left mr-4 mt-3">
+                                    <a href="#">
+                                        <i class="fas fa-check fa-2x" style="color:rgb(192, 186, 192);float: left;"></i>
+                                    </a>
+                                </div>
+                                <div class="container text-right ml-4 mt-3">
+
+                                    <a href="#">
+                                        <i class="fas fa-plus-circle fa-2x" style="color:rgb(192, 186, 192);"></i>
+                                    </a>
+                                </div>
+
+                            -->
+                        </div>
+
+                        <div class="container w-100 text-right pb-2">
+                            <a href="#" class="change-icon float-right">
+                                <i class="fas fa-check fa-2x"
+                                    style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
+                                    <i class="fas fa-check-circle fa-2x" style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
+                            </a>                           
+                        </div>
+
+
+                    </div>
                 </div>
-                <div class="container">
-                    <nav class="nav nav-pills ml-auto text-justify">
-                        <div class="w-100">
-                            <a class="flex-md-fill text-sm-center nav-link" href="#">Active</a>
-                        </div>
-                        <div class="w-100">
-                            <a class="flex-md-fill text-sm-center nav-link" href="#">Active</a>
-                        </div>
-                        <div class="w-100">
-                            <a class="flex-sm-fill text-sm-center nav-link" href="#">Active</a>
-                        </div>
-                        <div class="w-100">
-                            <a class="flex-sm-fill text-sm-center nav-link" href="#">Active</a>
-                        </div>
-                    </nav>
-                </div>
-                <p>ESTAMOS NA COLUMNA 1</p>
             </div>
+            <!-- Columna 2 fila Principal -->
             <div class="col-sm">
                 <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -125,11 +179,15 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                            aria-controls="profile" aria-selected="false">Profile</a>
+                            aria-controls="profile" aria-selected="false">Fotos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                            aria-controls="contact" aria-selected="false">Contact</a>
+                            aria-controls="contact" aria-selected="false">Seguidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                            aria-controls="contact" aria-selected="false">Favoritos</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -147,36 +205,32 @@
                         assumenda tempora.</div>
                 </div>
 
-                <div class="card text-center">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Active</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
-                ESTAMOS NA COLUMNA 2
-
             </div>
+            <!-- Columna 3 fila Principal -->
             <div class="col-2 mt-3">
-
-                <p>ESTAMOS NA COLUMNA de favoritos</p>
+                <h5 class="text-center pb-2">Favoritos</h5>
+                <div class="d-inline list-group list-group-flush text-center" id="favoritos">
+                    <a href="#" class="list-group-item">
+                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Ver más
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Pie de página -->
     <div class="footer jumbotron-fluid text-center">
         <div class="container">
             <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
