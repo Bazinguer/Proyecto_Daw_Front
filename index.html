@@ -27,9 +27,9 @@
     <!-- NavBar TOP -->
     <div class="container-fluid text-right" style="padding-right: 0%;">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="d-flex flex-grow-1 ml-4">
-                <div class="w-100 text-right">
-                    <div class="d-none d-md-none d-lg-block w-100 pl-5 ml-5">
+            <div class="d-flex flex-grow-1">
+                <div class="w-100 text-right ml-5">
+                    <div class="container-fluid d-none d-md-none d-lg-block w-100 pl-5 ml-5">
                         <img class="img-thumbnail" style="width: 80; height: 80px;"
                             src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
                     </div>
@@ -52,6 +52,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link m-2 mt-4 menu-item">Configuración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link m-2 mt-4 menu-item">Contacta</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link m-2 mt-4 menu-item">Cerrar sesión</a>
@@ -91,7 +94,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">@</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                            <input type="text" class="form-control" placeholder="Nick" aria-label="Username"
                                 aria-describedby="basic-addon1">
                             <button class="btn btn-sm btn-outline-secondary ml-1" type="submit">Buscar</button>
                         </div>
@@ -105,68 +108,45 @@
                 <div class="container">
                     <div class="card">
                         <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top" alt="...">
-
-                        <h5 class="card-title text-center pt-2">@Blanca</h5>
-                    </div>
-
-                    <div class="card" style="margin-top: 10px;">
                         <div class="card-body">
 
-                                <div class="bg-info pb-3">                                 
-                                   
-                                        <h6 class="float-left">Perfil</h6>                              
-                                  
-                                        <a href="#" class="change-icon">
-                                                <i class="fas fa-plus fa-lg"
-                                                style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i> 
-                                            <i class="fas fa-plus-circle fa-lg"
-                                                style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i> 
-                                        </a>
-                                    </div>  
+                            <div class="bg-info pb-3">
 
-                                <hr>
+                                <h6 class="float-left">@Blanca</h6>
 
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio1" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio1">@Blanca</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio2" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio2">@Prins</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio3" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio3">@Locke</label>
-                                </div>
-                                
-                                <!--
-                                <div class="container text-left mr-4 mt-3">
-                                    <a href="#">
-                                        <i class="fas fa-check fa-2x" style="color:rgb(192, 186, 192);float: left;"></i>
-                                    </a>
-                                </div>
-                                <div class="container text-right ml-4 mt-3">
+                                <a href="#" class="change-icon">
+                                    <i class="fas fa-plus fa-lg"
+                                        style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i>
+                                    <i class="fas fa-plus-circle fa-lg"
+                                        style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i>
+                                </a>
+                            </div>
 
-                                    <a href="#">
-                                        <i class="fas fa-plus-circle fa-2x" style="color:rgb(192, 186, 192);"></i>
-                                    </a>
-                                </div>
+                            <hr>
 
-                            -->
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"
+                                    checked>
+                                <label class="custom-control-label" for="customRadio1">@Blanca</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">@Prins</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio3">@Locke</label>
+                            </div>
                         </div>
 
                         <div class="container w-100 text-right pb-2">
                             <a href="#" class="change-icon float-right">
                                 <i class="fas fa-check fa-2x"
                                     style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
-                                    <i class="fas fa-check-circle fa-2x" style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
-                            </a>                           
+                                <i class="fas fa-check-circle fa-2x"
+                                    style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
+                            </a>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -181,20 +161,71 @@
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                             aria-controls="profile" aria-selected="false">Fotos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                            aria-controls="contact" aria-selected="false">Seguidos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                            aria-controls="contact" aria-selected="false">Favoritos</a>
-                    </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Lorem
-                        ipsum dolor sit amet consectetur adipisicing elit. Quia adipisci quis sit. Quos maxime dolorum
-                        voluptates perferendis placeat eius impedit, quia earum, consectetur veritatis, quod aperiam
-                        praesentium at! Veniam, quasi?</div>
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="d-flex mx-auto justify-content-around pt-4">
+                            <div class="container">
+                                <span class="p-1"> <i class="fas fa-check fa-2x"
+                                        style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
+                                </span>
+                                <span class="p-1">
+                                    sdakfhjisad
+                                </span>
+                            </div>
+                            <div class="container">
+                                <span class="p-1">
+                                    <i class="fas fa-check fa-2x"
+                                        style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
+                                </span>
+                                <span class="p-1">
+                                    sdakfhjisad
+                                </span>
+                            </div>
+                            <div class="container">
+                                <span class="p-1">
+                                    <i class="fas fa-check fa-2x"
+                                        style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
+                                </span>
+                                <span class="p-1">
+                                    sdakfhjisad
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="container d-flex text-center pt-4">
+                            <span class="mx-auto border border-secondary rounded p-1"
+                                style="margin-right: 10px!important;">
+                                <strong class="pr-1">25</strong>Seguidores
+                            </span>
+                            <span class="mx-auto border border-secondary rounded p-1"
+                                style="margin-left: 10px!important;">
+                                <strong class="pr-1">15</strong>Seguidos
+                            </span>
+                        </div>
+
+                        <div class="container-fluid text-right pt-4">
+                            <div class="card w-75 mx-auto">
+                                <div class="bg-info">
+                                    <span class="pl-4 pt-4 float-left text-muted font-weight-bold"
+                                        style="font-size: 1.35em;">@Blanca</span>
+
+                                    <a href="#" class="change-icon pr-4 pt-2"
+                                        style="width: 10%;float: right; margin: 0 0 auto auto;">
+                                        <i class="fas fa-edit fa-2x" style="color:rgb(192, 186, 192);"></i>
+                                        <i class="fas fa-edit fa-2x" style="color:rgb(100, 100, 100);"></i>
+                                    </a>
+                                </div>
+
+                                <div class="card-body text-center">
+                                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Lorem ipsum
                         dolor sit, amet consectetur adipisicing elit. Omnis placeat eligendi asperiores ex sit? Nobis,
                         illum rerum cupiditate, officia culpa fugit maxime voluptatibus modi, molestias quaerat expedita
@@ -211,18 +242,26 @@
                 <h5 class="text-center pb-2">Favoritos</h5>
                 <div class="d-inline list-group list-group-flush text-center" id="favoritos">
                     <a href="#" class="list-group-item">
-                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                        <div class="card">
+                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                        </div>
                     </a>
                     <a href="#" class="list-group-item">
-                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                        <div class="card">
+                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                        </div>
                     </a>
                     <a href="#" class="list-group-item">
-                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                        <div class="card">
+                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                        </div>
                     </a>
                     <a href="#" class="list-group-item">
-                        <img src="img/logo.jpg" class="img-fluid" alt="Responsive image">
+                        <div class="card">
+                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                        </div>
                     </a>
-                    <a href="#" class="list-group-item">
+                    <a href="#" class="list-group-item" style="color:rgb(192, 186, 192);">
                         Ver más
                     </a>
                 </div>

@@ -2,6 +2,14 @@ body{
     background-color: #ffffff;
 }
 
+a:hover{
+    color:transparent;
+}
+
+#myTab a:hover{
+    color: inherit;
+}
+
 #searcher{
     padding-right: 28px;
 }
@@ -11,7 +19,10 @@ body{
     max-width: 100px;
 }
 
-
+.card{
+    box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
+    border-radius: 0.15rem;
+}
 .bg-info {
     background-color: #ffffff !important;
 }
@@ -24,6 +35,12 @@ body{
   display: inherit;
 }
 
+/* This is the checked state */
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: rgb(100, 100, 100);
+    background-color: rgb(100, 100, 100);
+  }
 /*
 a:hover{   
     background-color: #cfcfcf;
@@ -43,8 +60,8 @@ a:hover{
     #searcher{
         padding-top: 5px;
         padding-right: 16px;
-    }  
-
+    } 
+        
     #favoritos .list-group-item .img-fluid{
         max-height: 80px;
         max-width: 80px;
