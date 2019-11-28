@@ -73,10 +73,7 @@
         <div class="row">
             <!-- buscador principal/Perfil -->
             <div class="container-fluid" id="searcher">
-
-
                 <div class="bg-info">
-
                     <button class="btn btn-outline-secondary dropdown-toggle float-left  d-sm-block d-md-none d-lg-none"
                         type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -88,7 +85,6 @@
                         <a class="dropdown-item" href="#">@Sivha</a>
                         <a class="dropdown-item" href="#">Crear perfil</a>
                     </div>
-
                     <form class="form-inline w-35" style="float: right;">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -100,8 +96,6 @@
                         </div>
                     </form>
                 </div>
-
-
             </div>
             <!-- Columna 1 de la fila Principal -->
             <div class="col-2 mt-3" id="colum1">
@@ -109,16 +103,13 @@
                     <div class="card">
                         <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-
                             <div class="bg-info pb-3">
-
                                 <h6 class="float-left">@Blanca</h6>
-
                                 <a href="#" class="change-icon">
                                     <i class="fas fa-plus fa-lg"
-                                        style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i>
-                                    <i class="fas fa-plus-circle fa-lg"
-                                        style="color:rgb(192, 186, 192);float: right;margin-right: 7%;"></i>
+                                        style="color:rgb(192, 186, 192);float: right;margin-right: 3%;"></i>
+                                    <i class="fas fa-plus fa-lg"
+                                        style="color:rgb(109, 109, 109);float: right;margin-right: 3%;"></i>
                                 </a>
                             </div>
 
@@ -138,13 +129,12 @@
                                 <label class="custom-control-label" for="customRadio3">@Locke</label>
                             </div>
                         </div>
-
                         <div class="container w-100 text-right pb-2">
                             <a href="#" class="change-icon float-right">
                                 <i class="fas fa-check fa-2x"
                                     style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
-                                <i class="fas fa-check-circle fa-2x"
-                                    style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
+                                <i class="fas fa-check fa-2x"
+                                    style="color:rgb(109, 109, 109);float: left;margin-left: 7%;"></i>
                             </a>
                         </div>
                     </div>
@@ -158,42 +148,67 @@
                             aria-controls="home" aria-selected="true">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                            aria-controls="profile" aria-selected="false">Fotos</a>
+                        <a class="nav-link" id="photos-tab" data-toggle="tab" href="#photos" role="tab"
+                            aria-controls="photos" aria-selected="false">Fotos</a>
                     </li>
                 </ul>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="row">
+                                <div class="col ml-0 pl-0 pr-0">
+                                    <div class="container ml-0 pl-0 pr-0">
+                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="img-fluid"
+                                            alt="...">
+                                    </div>                                 
+                                </div>
+                                <div class="col col-lg-4 ml-0 pl-0 pr-0">                                    
+                                    <div class="container ml-0">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span class="pr-2" aria-hidden="true">&times;</span>
+                                                </button>
+                                    </div>
+                                    <div class="container text-center ml-0 pl-0 pr-0 pt-2">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">En la playa</h5>
+                                        <hr class="w-50 mt-2 pt-0">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Div de contenido ( tab || crear perfil || Seguidos ) -->
                 <div class="tab-content" id="myTabContent">
+
+                    <!-- Tab 1 del tabNav -->
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="d-flex mx-auto justify-content-around pt-4">
-                            <div class="container">
-                                <span class="p-1"> <i class="fas fa-check fa-2x"
-                                        style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
-                                </span>
+                        <div class="container d-flex text-center pt-4 pb-4">
+                            <div class="container mx-auto">
                                 <span class="p-1">
-                                    sdakfhjisad
+                                    <i class="fas fa-venus-mars fa-2x" style="color:rgb(109, 109, 109);"></i>
+                                    <strong>Hembra</strong>
                                 </span>
                             </div>
-                            <div class="container">
+                            <div class="container mx-auto">
                                 <span class="p-1">
-                                    <i class="fas fa-check fa-2x"
-                                        style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
-                                </span>
-                                <span class="p-1">
-                                    sdakfhjisad
+                                    <i class="fas fa-dragon fa-2x" style="color:rgb(109, 109, 109);"></i>
+                                    <strong class="pl-2">Gato</strong>
                                 </span>
                             </div>
-                            <div class="container">
+                            <div class="container mx-auto">
                                 <span class="p-1">
-                                    <i class="fas fa-check fa-2x"
-                                        style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
-                                </span>
-                                <span class="p-1">
-                                    sdakfhjisad
+                                    <i class="fas fa-birthday-cake fa-2x" style="color:rgb(109, 109, 109);"></i>
+                                    <strong class="pl-2">6 años</strong>
                                 </span>
                             </div>
                         </div>
-
-                        <div class="container d-flex text-center pt-4">
+                        <div class="container d-flex text-center pt-4 pb-4">
                             <span class="mx-auto border border-secondary rounded p-1"
                                 style="margin-right: 10px!important;">
                                 <strong class="pr-1">25</strong>Seguidores
@@ -203,7 +218,6 @@
                                 <strong class="pr-1">15</strong>Seguidos
                             </span>
                         </div>
-
                         <div class="container-fluid text-right pt-4">
                             <div class="card w-75 mx-auto">
                                 <div class="bg-info">
@@ -224,16 +238,47 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Tab 2 del tabNav -->
+                    <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photos-tab">
+
+                        <div class="row bg-info mx-auto pt-4">
+                            <div class="col-sm-3 mt-2">
+                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
+                                    <a href="#">
+                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
+                                            alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 mt-2">
+                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
+                                    <a href="#">
+                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
+                                            alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 mt-2">
+                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
+                                    <a href="#">
+                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
+                                            alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 mt-2">
+                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
+                                    <a href="#">
+                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
+                                            alt="...">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Lorem ipsum
-                        dolor sit, amet consectetur adipisicing elit. Omnis placeat eligendi asperiores ex sit? Nobis,
-                        illum rerum cupiditate, officia culpa fugit maxime voluptatibus modi, molestias quaerat expedita
-                        quasi vel numquam.</div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Molestiae fuga eius magnam beatae. Consequatur id
-                        fugit hic illo iure aliquam eveniet beatae ipsum voluptas sint animi odio necessitatibus,
-                        assumenda tempora.</div>
                 </div>
 
             </div>
@@ -243,25 +288,25 @@
                 <div class="d-inline list-group list-group-flush text-center" id="favoritos">
                     <a href="#" class="list-group-item">
                         <div class="card">
-                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                            <i class="fas fa-dog fa-4x" style="color:rgb(109, 109, 109);"></i>
                         </div>
                     </a>
                     <a href="#" class="list-group-item">
                         <div class="card">
-                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                            <i class="fas fa-dog fa-4x" style="color:rgb(109, 109, 109);"></i>
                         </div>
                     </a>
                     <a href="#" class="list-group-item">
                         <div class="card">
-                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                            <i class="fas fa-dog fa-4x" style="color:rgb(109, 109, 109);"></i>
                         </div>
                     </a>
                     <a href="#" class="list-group-item">
                         <div class="card">
-                            <i class="fas fa-dog fa-4x" style="color:rgb(192, 186, 192);"></i>
+                            <i class="fas fa-dog fa-4x" style="color:rgb(109, 109, 109);"></i>
                         </div>
                     </a>
-                    <a href="#" class="list-group-item" style="color:rgb(192, 186, 192);">
+                    <a href="#" class="list-group-item" style="color:rgb(109, 109, 109);">
                         Ver más
                     </a>
                 </div>

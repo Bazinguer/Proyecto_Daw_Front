@@ -6,9 +6,14 @@ a:hover{
     color:transparent;
 }
 
-#myTab a:hover{
-    color: inherit;
+#myTab a{
+    color:rgb(109, 109, 109);    
 }
+
+#myTab a:hover{
+    color: inherit;   
+}
+
 
 #searcher{
     padding-right: 28px;
@@ -38,8 +43,8 @@ a:hover{
 /* This is the checked state */
 .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff;
-    border-color: rgb(100, 100, 100);
-    background-color: rgb(100, 100, 100);
+    border-color:rgb(109, 109, 109);
+    background-color:rgb(109, 109, 109);
   }
 /*
 a:hover{   
@@ -71,6 +76,12 @@ a:hover{
         padding-right: 0px; 
         padding-left: 0px;
     }
+
+    .modal-dialog {
+        max-width: 90%;       
+        padding-left: 5%;
+        margin-left: 4%;
+      }
   
 }
 
@@ -104,6 +115,16 @@ a:hover{
         float: right !important;
     }   
 }
+
+@media (min-width: 992px) {
+    .modal-dialog {
+      max-width: 80%;
+    }
+  }
+
+  @media (max-width: 991.8px) {
+   
+  }
 
 /* Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) { ... }
