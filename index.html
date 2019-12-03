@@ -20,6 +20,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- Personal JavaScript -->
     <script type="text/JavaScript" src="js/UserObject.js"></script>
+    <script type="text/JavaScript" src="js/validations.js"></script>
+    <script type="text/JavaScript" src="js/index.js"></script>
 </head>
 
 <body>
@@ -30,13 +32,13 @@
             <div class="d-flex flex-grow-1">
                 <div class="w-100 text-right ml-5">
                     <div class="container-fluid d-none d-md-none d-lg-block w-100 pl-5 ml-5">
-                        <img class="img-thumbnail" style="width: 80; height: 80px;"
-                            src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
+                        <a href="#" id="logoApp"> <img class="img-thumbnail" style="width: 80; height: 80px;"
+                                src="img/imagenes-clipart-sin-copyright-transparent.png" alt="..." ></a>
                     </div>
                     <div class="d-block d-md-block d-lg-none w-100">
 
-                        <img class="img-thumbnail" style="width: 60; height: 60px; margin-right: 35%;"
-                            src="img/imagenes-clipart-sin-copyright-transparent.png" alt="...">
+                        <a href="#" id="logoApp"> <img class="img-thumbnail" style="width: 60; height: 60px; margin-right: 35%;"
+                                src="img/imagenes-clipart-sin-copyright-transparent.png" alt="..." > </a>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
                             <span class="navbar-toggler-icon"></span>
@@ -48,16 +50,16 @@
             <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
                 <ul class="navbar-nav ml-auto flex-nowrap">
                     <li class="nav-item w-15">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item nav-active">Mapa</a>
+                        <a href="#" id="principalSearch" class="nav-link m-2 mt-4 menu-item nav-active">Mapa</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item">Configuración</a>
+                        <a href="#" id="config" class="nav-link m-2 mt-4 menu-item">Configuración</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item">Contacta</a>
+                        <a href="#" id="contacta" class="nav-link m-2 mt-4 menu-item">Contacta</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link m-2 mt-4 menu-item">Cerrar sesión</a>
+                        <a href="#" id="logOut" class="nav-link m-2 mt-4 menu-item">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>
@@ -85,14 +87,15 @@
                         <a class="dropdown-item" href="#">@Sivha</a>
                         <a class="dropdown-item" href="#">Crear perfil</a>
                     </div>
-                    <form class="form-inline w-35" style="float: right;">
+                    <form class="form-inline w-35" style="float: right;" action="#" method="GET" id="serchBynickForm">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">@</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Nick" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                            <button class="btn btn-sm btn-outline-secondary ml-1" type="submit">Buscar</button>
+                            <input type="text" class="form-control" id="searchNick" placeholder="Nick"
+                                aria-label="Username" aria-describedby="basic-addon1">
+                            <button class="btn btn-sm btn-outline-secondary ml-1" id="serchBynick"
+                                type="submit">Buscar</button>
                         </div>
                     </form>
                 </div>
@@ -105,7 +108,7 @@
                         <div class="card-body">
                             <div class="bg-info pb-3">
                                 <h6 class="float-left">@Blanca</h6>
-                                <a href="#" class="change-icon">
+                                <a href="#" id="createProfile" class="change-icon">
                                     <i class="fas fa-plus fa-lg"
                                         style="color:rgb(192, 186, 192);float: right;margin-right: 3%;"></i>
                                     <i class="fas fa-plus fa-lg"
@@ -129,8 +132,9 @@
                                 <label class="custom-control-label" for="customRadio3">@Locke</label>
                             </div>
                         </div>
+
                         <div class="container w-100 text-right pb-2">
-                            <a href="#" class="change-icon float-right">
+                            <a href="#" id="changeProfile" class="change-icon float-right">
                                 <i class="fas fa-check fa-2x"
                                     style="color:rgb(192, 186, 192);float: left;margin-left: 7%;"></i>
                                 <i class="fas fa-check fa-2x"
@@ -142,146 +146,108 @@
             </div>
             <!-- Columna 2 fila Principal -->
             <div class="col-sm">
-                <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                            aria-controls="home" aria-selected="true">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="photos-tab" data-toggle="tab" href="#photos" role="tab"
-                            aria-controls="photos" aria-selected="false">Fotos</a>
-                    </li>
-                </ul>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <div class="row">
-                                <div class="col ml-0 pl-0 pr-0">
-                                    <div class="container ml-0 pl-0 pr-0">
-                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="img-fluid"
-                                            alt="...">
-                                    </div>                                 
-                                </div>
-                                <div class="col col-lg-4 ml-0 pl-0 pr-0">                                    
-                                    <div class="container ml-0">
+
+                            <div class="card w-100">
+                                <div class="row justify-content-center align-items-center minh-100">
+                                    <div class="col-md-8">
+                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg"
+                                            class="img-fluid mx-auto d-block" alt="...">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="container ml-0">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span class="pr-2" aria-hidden="true">&times;</span>
-                                                </button>
+                                                <span class="pr-2" aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <h5 class="card-title text-center pt-2">Card title</h5>
+                                            <hr class="w-50 mt-2 pt-0">
+
+                                            <div class="container d-flex flex-column scroll">
+
+                                                <p class="card-text p-2" style="font-size: 0.75em;
+                                                    box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
+                                                    border-radius: 0.15rem;">
+                                                    <strong class="text-muted">@Dida</strong>
+                                                    Some quick example text to build on the card
+                                                    title
+                                                    and make up
+                                                    the bulk of the card's content.</p>
+
+                                                <p class="card-text p-2" style="font-size: 0.75em;
+                                                    box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
+                                                    border-radius: 0.15rem;">
+                                                    <strong class="text-muted">@Dida</strong>
+                                                    Some quick example text to build on the card
+                                                    title
+                                                    and make up
+                                                    the bulk of the card's content.</p>
+
+                                                <p class="card-text p-2" style="font-size: 0.75em;
+                                                    box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
+                                                    border-radius: 0.15rem;">
+                                                    <strong class="text-muted">@Dida</strong>
+                                                    Some quick example text to build on the card
+                                                    title
+                                                    and make up
+                                                    the bulk of the card's content.</p>
+
+                                                <p class="card-text p-2" style="font-size: 0.75em;
+                                                    box-shadow: 2px 4px 10px 0 rgba(0, 34, 51, 0.05), 2px 4px 10px 0 rgba(0, 34, 51, 0.05);
+                                                    border-radius: 0.15rem;">
+                                                    <strong class="text-muted">@Dida</strong>
+                                                    Some quick example text to build on the card
+                                                    title
+                                                    and make up
+                                                    the bulk of the card's content.</p>
+
+                                                <div class="md-form w-75 mx-auto" id="mostrarCajaCom">
+                                                    <div class="input-group mb-3">
+                                                        <textarea id="form10" class="md-textarea form-control"
+                                                            placeholder="Añade un comentario..." rows="2"
+                                                            style="resize: none;"></textarea>
+                                                    </div>
+                                                    <button class="btn btn-outline-secondary btn-sm mb-2 text-center"
+                                                        type="button" style="height: 50%;">Publicar</button>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="footer w-75 jumbotron-fluid mx-auto text-center mt-2"
+                                                id="ocultarCajaCom">
+                                                <div class="md-form w-75 mx-auto">
+                                                    <div class="input-group mb-3">
+                                                        <textarea id="form10" class="md-textarea form-control"
+                                                            placeholder="Añade un comentario..." rows="2"
+                                                            style="resize: none;"></textarea>
+                                                    </div>
+                                                    <button class="btn btn-outline-secondary btn-sm mb-2" type="button"
+                                                        style="height: 50%;">Publicar</button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
                                     </div>
-                                    <div class="container text-center ml-0 pl-0 pr-0 pt-2">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">En la playa</h5>
-                                        <hr class="w-50 mt-2 pt-0">
-                                    </div>
-                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Div Contenedor para intercambiar entre  tab || crear y modificar perfil || Seguidos || buscador..... ) -->
+                <div class="container-fluid" id="changeContent">
 
-
-                <!-- Div de contenido ( tab || crear perfil || Seguidos ) -->
-                <div class="tab-content" id="myTabContent">
-
-                    <!-- Tab 1 del tabNav -->
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="container d-flex text-center pt-4 pb-4">
-                            <div class="container mx-auto">
-                                <span class="p-1">
-                                    <i class="fas fa-venus-mars fa-2x" style="color:rgb(109, 109, 109);"></i>
-                                    <strong>Hembra</strong>
-                                </span>
-                            </div>
-                            <div class="container mx-auto">
-                                <span class="p-1">
-                                    <i class="fas fa-dragon fa-2x" style="color:rgb(109, 109, 109);"></i>
-                                    <strong class="pl-2">Gato</strong>
-                                </span>
-                            </div>
-                            <div class="container mx-auto">
-                                <span class="p-1">
-                                    <i class="fas fa-birthday-cake fa-2x" style="color:rgb(109, 109, 109);"></i>
-                                    <strong class="pl-2">6 años</strong>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="container d-flex text-center pt-4 pb-4">
-                            <span class="mx-auto border border-secondary rounded p-1"
-                                style="margin-right: 10px!important;">
-                                <strong class="pr-1">25</strong>Seguidores
-                            </span>
-                            <span class="mx-auto border border-secondary rounded p-1"
-                                style="margin-left: 10px!important;">
-                                <strong class="pr-1">15</strong>Seguidos
-                            </span>
-                        </div>
-                        <div class="container-fluid text-right pt-4">
-                            <div class="card w-75 mx-auto">
-                                <div class="bg-info">
-                                    <span class="pl-4 pt-4 float-left text-muted font-weight-bold"
-                                        style="font-size: 1.35em;">@Blanca</span>
-
-                                    <a href="#" class="change-icon pr-4 pt-2"
-                                        style="width: 10%;float: right; margin: 0 0 auto auto;">
-                                        <i class="fas fa-edit fa-2x" style="color:rgb(192, 186, 192);"></i>
-                                        <i class="fas fa-edit fa-2x" style="color:rgb(100, 100, 100);"></i>
-                                    </a>
-                                </div>
-
-                                <div class="card-body text-center">
-                                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tab 2 del tabNav -->
-                    <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="photos-tab">
-
-                        <div class="row bg-info mx-auto pt-4">
-                            <div class="col-sm-3 mt-2">
-                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
-                                    <a href="#">
-                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
-                                            alt="...">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-2">
-                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
-                                    <a href="#">
-                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
-                                            alt="...">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-2">
-                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
-                                    <a href="#">
-                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
-                                            alt="...">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 mt-2">
-                                <div class="card" data-toggle="modal" data-target="#exampleModalCenter">
-                                    <a href="#">
-                                        <img src="img/6-categorias-de-fotos-en-redes-sociales.jpg" class="card-img-top"
-                                            alt="...">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
-
             </div>
+
             <!-- Columna 3 fila Principal -->
             <div class="col-2 mt-3">
                 <h5 class="text-center pb-2">Favoritos</h5>
@@ -317,7 +283,7 @@
     <!-- Pie de página -->
     <div class="footer jumbotron-fluid text-center">
         <div class="container">
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
+            <p class="lead"> Copyright &copy; 2019 &mdash; FP DAW
             </p>
         </div>
     </div>

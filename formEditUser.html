@@ -1,0 +1,40 @@
+<div class="card w-50 mx-auto pt-4 mt-4 pb-4 mb-4">
+    <div class="card-body">
+        <h4 class="card-title text-center">Editar Usuario</h4>
+        <div id="alert">
+            <div class="alert alert-danger" role="alert">
+                <p id="alertMessage"></p>
+            </div>
+        </div>
+
+        <form action="#" method="POST" id="editUserForm">
+            <div class="form-group">
+                <label for="nameEdit">Nombre:</label>
+                <input id="nameEdit" type="text" class="form-control" name="name" />
+            </div>           
+
+            <div class="form-group">
+                <label for="passwordEdit">Contraseña:
+                </label>
+                <input id="passwordEdit" type="password" class="form-control" name="passwordEdit" required>
+            </div>
+
+            <div class="form-group">
+                <label for="repeatpasswordEdit">Repita Contraseña:
+                </label>
+                <input id="repeatpasswordEdit" type="password" class="form-control" name="repeatpasswordEdit" required>
+            </div>
+
+            <div class="form-group m-0">
+                <div class="bg-info">
+                    <button type="submit" id="btnModificar" class="btn btn-secondary float-left">
+                        Aceptar
+                    </button>
+                    <button type="button" id="btnSalir" class="btn btn-secondary float-right">
+                        Salir
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

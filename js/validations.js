@@ -5,12 +5,38 @@ function eventsLoad() {
     console.log(window.location.href);
     switch (window.location.href) {
         case "http://127.0.0.1:5500/login.html":
-            checkCookie();
-            document.getElementById("btnLogin").addEventListener("click", validateLogin, true);
+
+            //Si existe usuario en sesión se redirecciona a index.
+            //Si no existe se carga normal el login.html
+            if (sessionStorage.getItem("user")) {
+                window.location.href = "http://127.0.0.1:5500/index.html";
+                break;
+
+            } else {
+                checkCookie();
+                document.getElementById("btnLogin").addEventListener("click", validateLogin, true);
+            }
             break;
+
         case "http://127.0.0.1:5500/register.html":
-            document.getElementById("btnRegister").addEventListener("click", validateRegistration, true);
+
+            //Si existe usuario en sesión se redirecciona a index.
+            //Si no existe se carga normal el register.html
+            if (sessionStorage.getItem("user")) {
+                window.location.href = "http://127.0.0.1:5500/index.html";
+            } else {
+                document.getElementById("btnRegister").addEventListener("click", validateRegistration, true);
+            }
             break;
+
+        case "http://127.0.0.1:5500/index.html":
+
+            //Si NO existe usuario en sesión se redirecciona a login.          
+            if (!sessionStorage.getItem("user")) {
+                window.location.href = "http://127.0.0.1:5500/login.html";
+            }
+            break;
+
         default:
             alert("NO coincide ningunha url");
             break;
@@ -231,6 +257,11 @@ function validateLogin(event) {
     let email = document.getElementById("emailLogin");
     let password = document.getElementById("passwordLogin");
 
+    //provisional
+    let name = "prueba";
+    let bornDate = "20190202";
+
+
     let check = document.getElementById("remember");
 
     if (checkRemember(check)) {
@@ -247,8 +278,27 @@ function validateLogin(event) {
 
         if (confirm("Todo validado correctamente.")) {
 
+            //Se realiza la petición a la API 
+            //Si todo sale correcto, se recoge el usuario que devuelve la API (o el que se envió)
+            //Se guarda en el localStorage y se redirige a index.html
+
             alert("Petición de usuario: \n email: " + email.value + " \n password: " + password.value);
-            //document.getElementById("register-validation").submit();        
+            //document.getElementById("register-validation").submit();     
+
+
+            const logUser = new User(name, email.value, password.value, bornDate);
+
+
+            //ahora guardamos el usuario en el sessionStorage
+            sessionStorage.setItem('user', JSON.stringify(logUser));
+
+            //recuperamos usuario del sessionStorage 
+            var userReg = JSON.parse(sessionStorage.getItem('user'));
+
+            console.log(userReg)
+
+            window.location.href = "http://127.0.0.1:5500/index.html";
+
         }
 
     }
@@ -275,7 +325,23 @@ function validateRegistration(event) {
 
         if (confirm("Todo validado correctamente.")) {
 
-            const newUser = new User(name, email, password, bornDate);
+            //Se realiza la petición a la API 
+            //Si todo sale correcto, se recoge el usuario que devuelve la API (o el que se envió)
+            //Se guarda en el localStorage y se redirige a index.html
+
+
+            const newUser = new User(name.value, email.value, password.value, bornDate.value);
+
+
+            //ahora guardamos el usuario en el sessionStorage
+            sessionStorage.setItem('user', JSON.stringify(newUser));
+
+            var userReg = JSON.parse(sessionStorage.getItem('user'));
+
+            console.log(userReg)
+
+            window.location.href = "http://127.0.0.1:5500/index.html";
+
 
             /**
             newUser.name = name;
@@ -284,15 +350,81 @@ function validateRegistration(event) {
             newUser.bornDate = bornDate;
              */
 
+            /* 
 
-            alert(newUser.toString);
+            // Guardar el array en el localStorage
 
+            // El arreglo:
+            var array = [1, 2, 3];
+            // Se guarda en localStorage despues de JSON stringificarlo 
+            localStorage.setItem('myArray', JSON.stringify(array));
+
+            // Obtener el arreglo de localStorage
+
+            var array = localStorage.getItem('myArray');
+            // Se parsea para poder ser usado en js con JSON.parse :)
+            array = JSON.parse(array);
+
+             */
+
+         
             //document.getElementById("register-validation").submit();
 
         }
 
 
     }
+}
+
+/**************************************
+ ****** VALIDAR EDITAR USUARIO ********
+ **************************************/
+function validateEditUser(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("nameEdit");
+    let password = document.getElementById("passwordEdit");
+    let repeatPassword = document.getElementById("repeatpasswordEdit");
+
+    //si todo valida, enviamos petición de buscar usuario
+    if (validateName(name) && validatePassword(password) &&
+        validatePassword(repeatPassword) && validateRepeatPassword(password, repeatPassword)) {
+
+        //Se realiza la petición de modificacion a la API, recogiendo los valores del form y sessionStorage 
+        //Si todo sale correcto, se recoge el usuario modificado que devuelve la API
+        //Se guarda en el localStorage y se redirige a index.html
+
+        var userModif = JSON.parse(sessionStorage.getItem('user'));
+        userModif.name = name.value;
+        userModif.password = password.value;
+
+        userModif = new User(userModif.name, userModif.email, userModif.password, userModif.bornDate);
+
+        console.log("Se crea el usuario: \n{" + 
+        "name: " + userModif.name + " \n" +
+        "email: " + userModif.email + " \n" +
+        "password: " + userModif.password + " \n" +
+        "bornDate: " + userModif.bornDate + " \};");
+
+
+        //se lanza el formulario 
+        //document.getElementById("editUserForm").submit();
+
+        //Si todo sale ok se guarda el usuario que devuelve la petición en el sessionStorage
+        //y se redirecciona para index.html
+
+
+        window.location.href = "http://127.0.0.1:5500/index.html";  
+
+    }
+}
+
+
+/**************************************
+ ****** VALIDAR EDITAR PErfil ********
+ **************************************/
+function validateProfile() {
+    
 }
 
 /**************************************

@@ -7,13 +7,13 @@ class User {
         this.bornDate = bornDate;
     }
 
+    /*
     toString = function () {
-        console.log(
-            "Se crea el usuario: {" + 
-            "name: " + this.name + " \n" +
-            "email: " + this.email + " \n" +
+       
+        return "Se crea el usuario: \{" + 
+            "name: " + User.name.toString + " \n" +
+            "email: " + User.email.toString + " \n" +
             "password: " + this.password + " \n" +
-            "bornDate: " + this.bornDate + " };"
-        );
-    }
+            "bornDate: " + this.bornDate.value + " \};"
+           } */
 }
