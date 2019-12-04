@@ -6,7 +6,7 @@
                 <p id="alertMessage"></p>
             </div>
         </div>
-        <form action="#" method="POST" id="editProfileForm">
+        <form action="#" method="POST" id="createProfileForm">
             <div class="form-group">
                 <label for="nickEdit">Nick:</label>
                 <input id="nickEdit" type="text" class="form-control" name="nickEdit" required/>
@@ -14,14 +14,14 @@
 
             <div class="form-group">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioHembra"
-                        value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Hembra</label>
+                    <input class="form-check-input" type="radio" name="sexo" id="radioHembra"
+                        value="hembra">
+                    <label class="form-check-label" for="radioHembra">Hembra</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioMacho"
-                        value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Macho</label>
+                    <input class="form-check-input" type="radio" name="sexo" id="radioMacho"
+                        value="macho">
+                    <label class="form-check-label" for="radioMacho">Macho</label>
                 </div>
             </div>
 
@@ -41,13 +41,11 @@
                 <label for="descriptionProfile">Describete brevemente: </label>
                 <textarea id="descriptionProfile" class="md-textarea form-control" name="descriptionProfile"
                     placeholder="Añade un comentario..." required></textarea>
-
-
             </div>
 
             <div class="form-group m-0">
                 <div class="bg-info">
-                    <button type="submit" id="btnModificarPerfil" class="btn btn-secondary float-left">
+                    <button type="submit" id="btnCreateProfile" class="btn btn-secondary float-left">
                         Confirmar
                     </button>
                     <button type="button" id="btnVolver" class="btn btn-secondary float-right">

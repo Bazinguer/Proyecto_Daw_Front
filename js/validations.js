@@ -45,19 +45,20 @@ function eventsLoad() {
 
 /***************************** INPUTS ********************************/
 function validateName(element) {
+  
     let string = element.value;
     let alert = document.getElementById("alert");
     let alertMessage = document.getElementById("alertMessage");
-
+ 
     if (string == "" || string == null) {
         alert.style.display = "inline";
-        alertMessage.innerHTML = "El nombre es obligatorio.";
+        alertMessage.innerHTML = "Este campo es obligatorio.";
         element.focus();
         element.classList.add("error");
         return false;
     } else if (string.length < 3) {
         alert.style.display = "inline";
-        alertMessage.innerHTML = "El nombre tiene que tener minímo 3 carácteres.";
+        alertMessage.innerHTML = "Debe tener minímo 3 carácteres.";
         element.focus();
         element.classList.add("error");
         return false;
@@ -367,7 +368,7 @@ function validateRegistration(event) {
 
              */
 
-         
+
             //document.getElementById("register-validation").submit();
 
         }
@@ -400,11 +401,11 @@ function validateEditUser(event) {
 
         userModif = new User(userModif.name, userModif.email, userModif.password, userModif.bornDate);
 
-        console.log("Se crea el usuario: \n{" + 
-        "name: " + userModif.name + " \n" +
-        "email: " + userModif.email + " \n" +
-        "password: " + userModif.password + " \n" +
-        "bornDate: " + userModif.bornDate + " \};");
+        console.log("Se crea el usuario: \n{" +
+            "name: " + userModif.name + " \n" +
+            "email: " + userModif.email + " \n" +
+            "password: " + userModif.password + " \n" +
+            "bornDate: " + userModif.bornDate + " \};");
 
 
         //se lanza el formulario 
@@ -414,18 +415,100 @@ function validateEditUser(event) {
         //y se redirecciona para index.html
 
 
-        window.location.href = "http://127.0.0.1:5500/index.html";  
+        window.location.href = "http://127.0.0.1:5500/index.html";
 
     }
 }
 
 
 /**************************************
- ****** VALIDAR EDITAR PErfil ********
+ ****** VALIDAR EDITAR PEERFIL ********
  **************************************/
-function validateProfile() {
+function validateProfile(event) {
+
+    event.preventDefault();
+
+    var radioChecekd = false;
+
+    let nick = document.getElementById("nickEdit");
+    let raza = document.getElementById("razaEdit");
+    let bornPetDate = document.getElementById("bornPetDate");
+    let description = document.getElementById("descriptionProfile");
+    let sexo = document.getElementsByName("sexo");
+
+    for (i = 0; i < sexo.length; i++) {
+        if (sexo[i].checked) {
+            var valorSexo = sexo[i].value;
+            radioChecekd = sexo[i].checked;           
+        }       
+    }
+  
+
+    if (validateName(nick) && radioChecekd && validateName(raza) &&
+    validateBornDatePet(bornPetDate) && validateName(description)) {
+        
+        alert("Todo validado correctamente")
+        //Si valida correctamente, se crea o edita el perfil
+        alert("Se crea el perfil: \n{" +
+        "nick: " + nick.value + " \n" +
+        "sexo: " + valorSexo  + " \n" +
+        "raza: " + raza.value + " \n" +
+        "description: " + description.value + " \n" +
+        "bornDate: " + bornPetDate.value + " \};");
+
+
+    //se lanza el formulario 
+    //document.getElementById("editProfileForm").submit();
+
+    //Si todo sale ok se guarda el perfil y se añade a la lista de perfiles que devuelve la petición en el sessionStorage
+    //y se redirecciona para index.html
+
+
+    window.location.href = "http://127.0.0.1:5500/index.html";
+        
+
+    }
+
+    else{
+        alert("Debe cubrir todos los campos del formulario.")
+    }
+
     
 }
+
+
+function validateBornDatePet(element) {
+
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
+    let valor = element.value;
+    let ano = parseInt(valor.substring(0, 4));
+    let mes = parseInt(valor.substring(5, 7)) - 1;
+    let dia = parseInt(valor.substring(8, valor.length));
+
+    let fch = new Date(ano, mes, dia);
+    //console.log(fch);
+    //console.log(isNaN(fch));
+
+    if (isNaN(fch)) {
+        alert.style.display = "inline";
+        alertMessage.innerHTML = "Error al seleccionar la fecha de nacimiento.";
+        element.classList.add("error");
+        element.focus();
+        return false;
+
+    } else {
+        alertMessage.innerHTML = "";
+        element.classList.remove("error");
+        alert.style.display = "none";
+        return true;
+    }
+
+}
+
+
+
+
 
 /**************************************
  ************** COOKIES ***************
@@ -447,3 +530,4 @@ function checkCookie() {
     }
 
 }
+
