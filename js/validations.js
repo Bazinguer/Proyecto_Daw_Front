@@ -252,8 +252,7 @@ function checkRemember(element) {
 /**************************************
  *********** VALIDAR LOGIN ************
  **************************************/
-function validateLogin(event) {
-    event.preventDefault();
+function validateLogin() {  
 
     let email = document.getElementById("emailLogin");
     let password = document.getElementById("passwordLogin");
@@ -280,13 +279,37 @@ function validateLogin(event) {
         if (confirm("Todo validado correctamente.")) {
 
             //Se realiza la petición a la API 
-            //Si todo sale correcto, se recoge el usuario que devuelve la API (o el que se envió)
+            //Si todo sale correcto, se recoge el usuario que devuelve la API
             //Se guarda en el localStorage y se redirige a index.html
 
             alert("Petición de usuario: \n email: " + email.value + " \n password: " + password.value);
-            //document.getElementById("register-validation").submit();     
+            //document.getElementById("register-validation").submit();  
 
+            fetch("http://localhost:8080/api/v0/users/login?email="+ email.value +"&password=" + password.value)
+            .then(function (response) {
+                if (response.ok) {
+        
+                    response.json().then(function (myJson) {
 
+                        console.log(myJson);
+
+                        sessionStorage.setItem('user', JSON.stringify(myJson));
+
+                        window.location.href = "http://127.0.0.1:5500/index.html";
+
+        
+                    });
+        
+                } else {
+                    console.log('Respuesta de red OK.');
+                }
+            })
+            .catch(function (error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+                console.log('http://localhost:8080/api/v0/users/login?' + email.value + password.value);
+            });
+
+/*
             const logUser = new User(name, email.value, password.value, bornDate);
 
 
@@ -299,7 +322,7 @@ function validateLogin(event) {
             console.log(userReg)
 
             window.location.href = "http://127.0.0.1:5500/index.html";
-
+*/
         }
 
     }
@@ -308,8 +331,7 @@ function validateLogin(event) {
 /**************************************
  ********* VALIDAR REGISTRO ***********
  **************************************/
-function validateRegistration(event) {
-    event.preventDefault();
+function validateRegistration() {
 
     let name = document.getElementById("name");
     let email = document.getElementById("email");
@@ -328,23 +350,24 @@ function validateRegistration(event) {
 
             //Se realiza la petición a la API 
             //Si todo sale correcto, se recoge el usuario que devuelve la API (o el que se envió)
-            //Se guarda en el localStorage y se redirige a index.html
+            //Se guarda en el localStorage y se redirige a index.html      
 
+
+
+            /*
 
             const newUser = new User(name.value, email.value, password.value, bornDate.value);
 
 
-            //ahora guardamos el usuario en el sessionStorage
+            ahora guardamos el usuario en el sessionStorage
             sessionStorage.setItem('user', JSON.stringify(newUser));
 
             var userReg = JSON.parse(sessionStorage.getItem('user'));
 
             console.log(userReg)
 
-            window.location.href = "http://127.0.0.1:5500/index.html";
+         
 
-
-            /**
             newUser.name = name;
             newUser.email = email;
             newUser.password = password;
