@@ -45,11 +45,11 @@ function eventsLoad() {
 
 /***************************** INPUTS ********************************/
 function validateName(element) {
-  
+
     let string = element.value;
     let alert = document.getElementById("alert");
     let alertMessage = document.getElementById("alertMessage");
- 
+
     if (string == "" || string == null) {
         alert.style.display = "inline";
         alertMessage.innerHTML = "Este campo es obligatorio.";
@@ -252,16 +252,10 @@ function checkRemember(element) {
 /**************************************
  *********** VALIDAR LOGIN ************
  **************************************/
-function validateLogin() {  
+function validateLogin() {
 
     let email = document.getElementById("emailLogin");
     let password = document.getElementById("passwordLogin");
-
-    //provisional
-    let name = "prueba";
-    let bornDate = "20190202";
-
-
     let check = document.getElementById("remember");
 
     if (checkRemember(check)) {
@@ -276,30 +270,19 @@ function validateLogin() {
 
         cleanErrores(document.getElementsByTagName("input"));
 
-        if (confirm("Todo validado correctamente.")) {
-
-            //Se realiza la petición a la API 
-            //Si todo sale correcto, se recoge el usuario que devuelve la API
-            //Se guarda en el localStorage y se redirige a index.html
-
-            alert("Petición de usuario: \n email: " + email.value + " \n password: " + password.value);
-            //document.getElementById("register-validation").submit();  
-
-            fetch("http://localhost:8080/api/v0/users/login?email="+ email.value +"&password=" + password.value)
+        //Se realiza la petición a la API 
+        //Si todo sale correcto, se recoge el usuario que devuelve la API
+        //Se guarda en el localStorage y se redirige a index.html    
+        fetch("http://localhost:8080/api/v0/users/login?email=" + email.value + "&password=" + password.value)
             .then(function (response) {
                 if (response.ok) {
-        
+
                     response.json().then(function (myJson) {
-
                         console.log(myJson);
-
                         sessionStorage.setItem('user', JSON.stringify(myJson));
-
                         window.location.href = "http://127.0.0.1:5500/index.html";
-
-        
                     });
-        
+
                 } else {
                     console.log('Respuesta de red OK.');
                 }
@@ -309,22 +292,6 @@ function validateLogin() {
                 console.log('http://localhost:8080/api/v0/users/login?' + email.value + password.value);
             });
 
-/*
-            const logUser = new User(name, email.value, password.value, bornDate);
-
-
-            //ahora guardamos el usuario en el sessionStorage
-            sessionStorage.setItem('user', JSON.stringify(logUser));
-
-            //recuperamos usuario del sessionStorage 
-            var userReg = JSON.parse(sessionStorage.getItem('user'));
-
-            console.log(userReg)
-
-            window.location.href = "http://127.0.0.1:5500/index.html";
-*/
-        }
-
     }
 }
 
@@ -332,7 +299,8 @@ function validateLogin() {
  ********* VALIDAR REGISTRO ***********
  **************************************/
 function validateRegistration() {
-
+    event.preventDefault();
+    
     let name = document.getElementById("name");
     let email = document.getElementById("email");
     let password = document.getElementById("password");
@@ -346,58 +314,41 @@ function validateRegistration() {
         validateRepeatPassword(password, repeatPassword) && validateBornDate(bornDate) &&
         validateTerms(agree)) {
 
-        if (confirm("Todo validado correctamente.")) {
+            var userInsert = {
+                "username" : name.value,
+                "email" : email.value,
+                "password": password.value,
+                "bornDate" : bornDate.value
+            }
 
-            //Se realiza la petición a la API 
-            //Si todo sale correcto, se recoge el usuario que devuelve la API (o el que se envió)
-            //Se guarda en el localStorage y se redirige a index.html      
+            var url = "http://localhost:8080/api/v0/users";
 
-
-
-            /*
-
-            const newUser = new User(name.value, email.value, password.value, bornDate.value);
-
-
-            ahora guardamos el usuario en el sessionStorage
-            sessionStorage.setItem('user', JSON.stringify(newUser));
-
-            var userReg = JSON.parse(sessionStorage.getItem('user'));
-
-            console.log(userReg)
-
-         
-
-            newUser.name = name;
-            newUser.email = email;
-            newUser.password = password;
-            newUser.bornDate = bornDate;
-             */
-
-            /* 
-
-            // Guardar el array en el localStorage
-
-            // El arreglo:
-            var array = [1, 2, 3];
-            // Se guarda en localStorage despues de JSON stringificarlo 
-            localStorage.setItem('myArray', JSON.stringify(array));
-
-            // Obtener el arreglo de localStorage
-
-            var array = localStorage.getItem('myArray');
-            // Se parsea para poder ser usado en js con JSON.parse :)
-            array = JSON.parse(array);
-
-             */
-
-
-            //document.getElementById("register-validation").submit();
-
-        }
-
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(userInsert),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response) {
+                    if (response.ok) {
+    
+                        response.json().then(function (myJson) {                               
+                            console.log(myJson);
+                            sessionStorage.setItem('user', JSON.stringify(myJson));
+                            window.location.href = "http://127.0.0.1:5500/index.html";
+    
+                        });
+    
+                    } else {
+                        console.log('Respuesta de red OK.');
+                    }
+                })
+                .catch(function (error) {
+                    console.log('Hubo un problema con la petición Fetch:' + error.message);
+                });
 
     }
+
 }
 
 /**************************************
@@ -417,28 +368,38 @@ function validateEditUser(event) {
         //Se realiza la petición de modificacion a la API, recogiendo los valores del form y sessionStorage 
         //Si todo sale correcto, se recoge el usuario modificado que devuelve la API
         //Se guarda en el localStorage y se redirige a index.html
-
         var userModif = JSON.parse(sessionStorage.getItem('user'));
-        userModif.name = name.value;
-        userModif.password = password.value;
+        userModif.username = name.value;
+        userModif.password = password.value; 
 
-        userModif = new User(userModif.name, userModif.email, userModif.password, userModif.bornDate);
+        alert(JSON.stringify(userModif));
 
-        console.log("Se crea el usuario: \n{" +
-            "name: " + userModif.name + " \n" +
-            "email: " + userModif.email + " \n" +
-            "password: " + userModif.password + " \n" +
-            "bornDate: " + userModif.bornDate + " \};");
+        var url = 'http://localhost:8080/api/v0/users';
+        fetch(url, {
+                method: 'PUT',
+                body: JSON.stringify(userModif),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
+                if (response.ok) {
 
+                    response.json().then(function (myJson) {
 
-        //se lanza el formulario 
-        //document.getElementById("editUserForm").submit();
+                        //insertar en localstroge el usuario editado
+                        console.log(myJson);
+                        sessionStorage.setItem('user', JSON.stringify(myJson));
+                        location.reload();
 
-        //Si todo sale ok se guarda el usuario que devuelve la petición en el sessionStorage
-        //y se redirecciona para index.html
+                    });
 
-
-        window.location.href = "http://127.0.0.1:5500/index.html";
+                } else {
+                    console.log('Respuesta de red OK.');
+                }
+            })
+            .catch(function (error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+            });
 
     }
 }
@@ -462,41 +423,72 @@ function validateProfile(event) {
     for (i = 0; i < sexo.length; i++) {
         if (sexo[i].checked) {
             var valorSexo = sexo[i].value;
-            radioChecekd = sexo[i].checked;           
-        }       
+            radioChecekd = sexo[i].checked;
+        }
     }
-  
+
 
     if (validateName(nick) && radioChecekd && validateName(raza) &&
-    validateBornDatePet(bornPetDate) && validateName(description)) {
-        
-        alert("Todo validado correctamente")
-        //Si valida correctamente, se crea o edita el perfil
-        alert("Se crea el perfil: \n{" +
-        "nick: " + nick.value + " \n" +
-        "sexo: " + valorSexo  + " \n" +
-        "raza: " + raza.value + " \n" +
-        "description: " + description.value + " \n" +
-        "bornDate: " + bornPetDate.value + " \};");
+        validateBornDatePet(bornPetDate) && validateName(description)) {
 
+        var usr = JSON.parse(sessionStorage.getItem('user'));
+        var petProfilInsert = {
+            "user": usr,
+            "nick": nick.value,
+            "sexo": valorSexo,
+            "raza": raza.value,
+            "description": description.value,
+            "petBornDate": bornPetDate.value
+        }
 
-    //se lanza el formulario 
-    //document.getElementById("editProfileForm").submit();
+        var url = 'http://localhost:8080/api/v0/petprofile';
 
-    //Si todo sale ok se guarda el perfil y se añade a la lista de perfiles que devuelve la petición en el sessionStorage
-    //y se redirecciona para index.html
+        fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(petProfilInsert),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
+                if (response.ok) {
 
+                    response.json().then(function (myJson) {
 
-    window.location.href = "http://127.0.0.1:5500/index.html";
-        
+                        console.log(myJson);
 
-    }
+                        fetch('http://localhost:8080/api/v0/petprofile/listprofile?userId=' + petProfilInsert.user.id)
+                            .then(function (response) {
+                                if (response.ok) {
 
-    else{
+                                    response.json().then(function (myJson) {
+
+                                        console.log(myJson);
+                                        sessionStorage.setItem('listpetprofiles', JSON.stringify(myJson));
+                                        location.reload();
+                                    });
+
+                                } else {
+                                    console.log('Respuesta de red OK.');
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log('Hubo un problema con la petición Fetch:' + error.message);
+                            });
+                    });
+
+                } else {
+                    console.log('Respuesta de red OK.');
+                }
+            })
+            .catch(function (error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+            });
+
+    } else {
         alert("Debe cubrir todos los campos del formulario.")
     }
 
-    
+
 }
 
 
@@ -529,10 +521,6 @@ function validateBornDatePet(element) {
 
 }
 
-
-
-
-
 /**************************************
  ************** COOKIES ***************
  **************************************/
@@ -553,4 +541,3 @@ function checkCookie() {
     }
 
 }
-
