@@ -31,7 +31,7 @@ function eventsLoad() {
     } else {
         loadTabPanel();
     }
-    
+
     cardColumn();
 }
 
@@ -40,6 +40,8 @@ function globalSearch() {
     //primero cargamos formulario de busqueda,y evento del btn de búsqueda 
     //si lanza busqueda, primero cargarmos la card,
     //hacemos peticion a Api y se muestra resultado con innerHtml con tantas card como resultados arroje la APi
+
+    var adduser = [];
 
     fetch('globalSearch.html')
         .then(function (response) {
@@ -51,29 +53,167 @@ function globalSearch() {
 
                     //cargamos eventos que tiene el fragmento
                     document.getElementById("btnserchGlobal").addEventListener("click", function () {
-                        //event.preventDefault();
+                        event.preventDefault();
 
                         let raza = document.getElementById("inputRaza");
                         let sexo = document.getElementById("inputSexo");
                         let edad = document.getElementById("inputEdad");
-                        //lanzamos peticion para traer resultados de la búsqueda
-                        alert("Se busca por raza, sexo y edad: " + "\n" +
-                            raza.value + ", " + sexo.value + ", " + edad.value)
+                        //lanzamos peticion para traer resultados de la búsqueda                    
 
-                        //se van añadiendo las cartas de los perfiles al div id=resultadoBusqueda
-                        document.getElementById("resultadoBusqueda").innerHTML = "No existen más resultados";
-                        return true;
+                        if (raza.value === null || raza.value === undefined) raza.value = "";
+                        if (sexo.value === null || sexo.value === undefined) sexo.value = "";
+                        if (sexo.value == "Hembra") sexo.value = "h";
+                        if (sexo.value == "Macho") sexo.value = "m";
+                        if (sexo.value == "Cualquier") sexo.value = "";
+                        if (edad.value === null || edad.value === undefined) petBorndDate.value = 0;
+
+
+                        fetch("http://localhost:8080/api/v0/petprofile/listsearch?raza=" + raza.value + "&sexo=" + sexo.value + "&petBorndDate=" + edad.value)
+                            .then(function (response) {
+                                if (response.ok) {
+
+                                    response.json().then(function (myJson) {
+
+                                        adduser = myJson;
+                                        console.log(myJson);
+                                        var string = "";
+
+                                        for (let i = 0; i < adduser.length; i++) {
+                                            let element = myJson[i];
+
+                                            console.log(element.imgProfile);
+
+                                            //addPhotos     data-toggle='modal' data-target='#exampleModal'"                 
+                                            string += "<div class='col-sm-3 mt-2'>";
+                                            string += "<div class='card'";
+                                            string += "<a href='#' onClick='loadTabPanelVisit(event)'>";
+                                            string += "<img src='" + element.imgProfile + "' id='" + element.id + "'  class='card-img-top' alt='...' >";
+                                            string += "</a>";
+                                            string += "</div>";
+                                            string += "</div>";
+                                        }
+
+                                        //se van añadiendo las cartas de los perfiles al div id=resultadoBusqueda
+                                        document.getElementById("addPhotosSerched").innerHTML = string;
+
+                                    });
+
+                                } else {
+                                    console.log('Respuesta de red OK.');
+                                    document.getElementById("addPhotosSerched").innerHTML = "No existen más resultados";
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log('Hubo un problema con la petición Fetch:' + error.message);
+                                document.getElementById("addPhotosSerched").innerHTML = "No existen más resultados";
+                            });
+
                     }, true);
                 });
             } else {
                 console.log('Respuesta de red OK.');
-                return false;
             }
         })
         .catch(function (error) {
             console.log('Hubo un problema con la petición Fetch:' + error.message);
-            return false;
         });
+}
+
+function loadTabPanelVisit(event) {
+
+    var element = event.target;
+
+    fetch('tabPanel.html')
+        .then(function (response) {
+            if (response.ok) {
+
+                response.text().then(function (miText) {
+
+                    document.getElementById("changeContent").innerHTML = miText
+
+                    //cargamos eventos que tiene el fragmento                    
+                    document.getElementById("createProfile").addEventListener("click", createProfile, true);
+                    document.getElementById("photos-tab").addEventListener("click", searchPhotos(element.id), true);
+
+
+                    fetch('http://localhost:8080/api/v0/petprofile?petProfileId=' + element.id)
+                        .then(function (response) {
+                            if (response.ok) {
+
+                                response.json().then(function (myJson) {
+                                    console.log(myJson);
+
+
+                                    fetch('http://localhost:8080/api/v0/follow?idFollow=' + myJson.id)
+                                        .then(function (response) {
+                                            if (response.ok) {
+
+                                                response.json().then(function (myJson) {
+                                                    document.getElementById("valueSeguidos").innerHTML = "<strong>" + myJson.length + "</strong>";
+                                                });
+
+                                            } else {
+                                                console.log('Respuesta de red OK.');
+                                            }
+                                        })
+                                        .catch(function (error) {
+                                            console.log('Hubo un problema con la petición Fetch:' + error.message);
+                                            document.getElementById("valueSeguidos").innerHTML = "<strong>0</strong>";
+                                        });
+
+                                    fetch('http://localhost:8080/api/v0/follow/listfollow?idFollow=' + myJson.id)
+                                        .then(function (response) {
+                                            if (response.ok) {
+
+                                                response.json().then(function (myJson) {
+                                                    document.getElementById("valueSeguidores").innerHTML = "<strong>" + myJson.length + "</strong>";
+                                                });
+                                            } else {
+                                                console.log('Respuesta de red OK.');
+                                            }
+                                        })
+                                        .catch(function (error) {
+                                            document.getElementById("valueSeguidores").innerHTML = "<strong>0</strong>";
+                                            console.log('Hubo un problema con la petición Fetch:' + error.message);
+                                        });
+
+                                    let year = parseInt(myJson.petBornDate.substring(0, 4));
+                                    let today = new Date();
+                                    let yearActual = today.getFullYear();
+                                    let agePet = yearActual - year;
+
+                                    if (myJson.sexo == "h") {
+                                        document.getElementById("valueSex").innerHTML = "<strong>" + myJson.sexo + "</strong>";
+                                    } else {
+                                        document.getElementById("valueSex").innerHTML = "<strong>" + myJson.sexo + "</strong>";
+                                    }
+                                    document.getElementById("valueRaza").innerHTML = "<strong>" + myJson.raza + "</strong>";
+                                    document.getElementById("valueAge").innerHTML = "<strong>" + agePet + "</strong>";
+                                    document.getElementById("valueNickCard").innerHTML = "<strong>" + myJson.nick + "</strong>";
+                                    document.getElementById("valueCard").innerHTML = "<strong>" + myJson.description + "</strong>";
+                                    document.getElementById("valueNickColum").innerHTML = "@" + myJson.nick;
+
+                                });
+
+                            } else {
+                                console.log('Respuesta de red OK.');
+                                document.getElementById("listPets").innerHTML = "";
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log('Hubo un problema con la petición Fetch:' + error.message);
+                        });
+
+                });
+
+            } else {
+                console.log('Respuesta de red OK.');
+            }
+        })
+        .catch(function (error) {
+            console.log('Hubo un problema con la petición Fetch:' + error.message);
+        });
+
 }
 
 function serchByNick(event) {
@@ -83,9 +223,38 @@ function serchByNick(event) {
     if (nick.value == "" || nick.value == null) {
         alert("El nick no puede estar vacío.")
     } else {
-        alert("buscando");
 
-        //document.getElementById("editUserForm").submit();
+        fetch("http://localhost:8080/api/v0/petprofile/nick?petNick=" + nick.value)
+            .then(function (response) {
+                if (response.ok) {
+
+                    response.json().then(function (myJson) {
+
+                        var string = "";
+                        string += "<div class='col-sm-3 mt-2'>";
+                        string += "<div class='card'";
+                        string += "<a href='#' onClick='loadTabPanelVisit(event)'>";
+                        string += "<img src='" + myJson.imgProfile + "' id='" + myJson.id + "'  class='card-img-top' alt='...' >";
+                        string += "</a>";
+                        string += "</div>";
+                        string += "</div>";
+                
+
+                    //se van añadiendo las cartas de los perfiles al div id=resultadoBusqueda
+                    document.getElementById("changeContent").innerHTML = string;
+
+                    });
+
+                } else {
+                    console.log('Respuesta de red OK.');
+                    document.getElementById("changeContent").innerHTML = "No existen resultados";
+                }
+            })
+            .catch(function (error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+                document.getElementById("").innerHTML = "No existen resultados";
+            });
+
     }
 
 }
@@ -195,7 +364,7 @@ function contacta() {
                     document.getElementById("changeContent").innerHTML = miText
 
                     //cargamos eventos que tiene el fragmento
-                    document.getElementById("closeContact").addEventListener("click", function () {                     
+                    document.getElementById("closeContact").addEventListener("click", function () {
                         loadTabPanel();
                     }, true);
 
@@ -320,12 +489,13 @@ function loadTabPanel() {
 
                     document.getElementById("changeContent").innerHTML = miText
 
-                    //cargamos eventos que tiene el fragmento                    
-                    document.getElementById("createProfile").addEventListener("click", createProfile, true);
-                    document.getElementById("photos-tab").addEventListener("click", searchPhotos, true);
 
                     //recuperamos valores del sessionStorage = petprofiles para pintarlos                        
                     let infoProfile = JSON.parse(sessionStorage.getItem("petprofiles"));
+
+                    //cargamos eventos que tiene el fragmento                    
+                    document.getElementById("createProfile").addEventListener("click", createProfile, true);
+                    document.getElementById("photos-tab").addEventListener("click", searchPhotos(infoProfile.id), true);
 
                     let year = parseInt(infoProfile.petBornDate.substring(0, 4));
                     let today = new Date();
@@ -388,12 +558,12 @@ function loadTabPanel() {
 
 }
 
-function searchPhotos() {
+function searchPhotos(id) {
 
     var addModal = [];
-    var infoProfile = JSON.parse(sessionStorage.getItem("petprofiles"));
-    console.log(infoProfile.id)
-    var url = 'http://localhost:8080/api/v0/photo/photolist?phetProfileId=' + infoProfile.id;
+    //  var infoProfile = JSON.parse(sessionStorage.getItem("petprofiles"));
+    console.log(id)
+    var url = 'http://localhost:8080/api/v0/photo/photolist?phetProfileId=' + id;
     fetch(url)
         .then(function (response) {
             if (response.ok) {
@@ -452,6 +622,7 @@ function loadPhotoComments(id) {
                     console.log(myJson);
                     sessionStorage.removeItem('photo');
                     sessionStorage.setItem('photo', JSON.stringify(myJson));
+
                 });
 
             } else {
@@ -482,7 +653,7 @@ function loadPhotoComments(id) {
                             "border-radius: 0.15rem;>";
                         string += "<strong class='text-muted pr-1'>";
                         string += "@" + nick + "</strong>" + comment + "</p>";
-                    }               
+                    }
 
                     document.getElementById("listComments").innerHTML = string;
                     document.getElementById("btnInsertComent").addEventListener("click", insertComment, true);
@@ -513,51 +684,49 @@ function insertComment(event) {
 
     var element = event.target;
 
-
-    alert(element.id);
-
     if (element.id === "btnInsertComent") {
         comment = document.getElementById("aaa");
         valorComment = comment.value;
 
     } else if (element.id === "btnInsertComent2") {
         comment = document.getElementById("bbb");
-        valorComment = prub.value;
+        valorComment = comment.value;
 
     }
 
+    if (valorComment === "" || valorComment === undefined || valorComment === null) {
+        alert("Debe escribir algo para poder publicarlo.")
+    } else {
 
-    var photo = JSON.parse(sessionStorage.getItem('photo'));
-    var petprofile = JSON.parse(sessionStorage.getItem('petprofiles'));
+        var photo = JSON.parse(sessionStorage.getItem('photo'));
+        var petprofile = JSON.parse(sessionStorage.getItem('petprofiles'));
 
-    var insertComment = {
-        "comment": valorComment,
-        "petProfile": petprofile,
-        "photo": photo,      
-    }
+        var insertComment = {
+            "comment": valorComment,
+            "petProfile": petprofile,
+            "photo": photo,
+        }
 
-    var url = 'http://localhost:8080/api/v0/comments';
+        var url = 'http://localhost:8080/api/v0/comments';
 
-    fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(insertComment),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response) {
+        fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(insertComment),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
 
-            response.text().then(function (myText) {
+                response.text().then(function (myText) {               
 
-                alert(myText);
+                    loadPhotoComments(parseInt(myText));
+                });
 
-                loadPhotoComments(parseInt(myText));
+            })
+            .catch(function (error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
             });
-
-        })
-        .catch(function (error) {
-            console.log('Hubo un problema con la petición Fetch:' + error.message);
-        });
-
+    }
 
 }
 

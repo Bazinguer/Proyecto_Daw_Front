@@ -285,6 +285,7 @@ function validateLogin() {
 
                 } else {
                     console.log('Respuesta de red OK.');
+                    alert("No se encuentra usuario con esas credenciales.")
                 }
             })
             .catch(function (error) {
