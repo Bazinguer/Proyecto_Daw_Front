@@ -34,6 +34,7 @@ function eventsLoad() {
 
     cardColumn();
 }
+/*************************************************************/
 
 function cardColumn() {
 
@@ -73,7 +74,6 @@ function cardColumn() {
     }
 
 }
-
 function globalSearch() {
     //primero cargamos formulario de busqueda,y evento del btn de búsqueda 
     //si lanza busqueda, primero cargarmos la card,
@@ -156,7 +156,6 @@ function globalSearch() {
             console.log('Hubo un problema con la petición Fetch:' + error.message);
         });
 }
-
 function loadTabPanelVisit(event) {
 
     var element = event.target;
@@ -255,7 +254,6 @@ function loadTabPanelVisit(event) {
         });
 
 }
-
 function serchByNick(event) {
     event.preventDefault();
     let nick = document.getElementById("searchNick");
@@ -296,7 +294,6 @@ function serchByNick(event) {
     }
 
 }
-
 function createProfile() {
 
     fetch('formcreateProfile.html')
@@ -370,7 +367,6 @@ function createProfile() {
         });
 
 }
-
 function deleteProfile() {
 
     let customProfile = document.getElementsByName("custom");
@@ -406,7 +402,6 @@ function deleteProfile() {
             });
     }
 }
-
 function editConfigUser() {
     //primero cargamos formulario de modificar,y evento del btn modificar y salir 
     //si modifica, lanzamos peticion a Api    
@@ -436,7 +431,6 @@ function editConfigUser() {
         });
 
 }
-
 function contacta() {
 
     fetch('contacta.html')
@@ -463,7 +457,6 @@ function contacta() {
         });
 
 }
-
 function logOut() {
     //Se elimina el sessionstorage y se envia a login.html
     sessionStorage.removeItem("user");
@@ -473,8 +466,6 @@ function logOut() {
     window.location.href = "http://127.0.0.1:5500/login.html";
 
 }
-
-//Elegir Perfil Mascota
 function choosePetProfile(booleano) {
     //recuperamos usuario del sessionStorage 
     var userReg = JSON.parse(sessionStorage.getItem('user'));
@@ -561,8 +552,6 @@ function choosePetProfile(booleano) {
     }
 
 }
-
-//carga el tabPanel de la página
 function loadTabPanel() {
 
     fetch('tabPanel.html')
@@ -646,12 +635,10 @@ function loadTabPanel() {
         });
 
 }
-
 function editDescriptionPet() {
     createProfile();
 
 }
-
 function searchPhotos(id) {
 
     var addModal = [];
@@ -697,7 +684,6 @@ function searchPhotos(id) {
         });
 
 }
-
 function loadModel(event) {
     var element = event.target;
     var valorImg = document.getElementById(element.id).getAttribute("src");
@@ -705,7 +691,6 @@ function loadModel(event) {
     loadPhotoComments(element.id);
 
 }
-
 function loadPhotoComments(id) {
 
     fetch('http://localhost:8080/api/v0/photo?photoId=' + id)
@@ -773,7 +758,6 @@ function loadPhotoComments(id) {
 
 
 }
-
 function insertComment(event) {
 
     var element = event.target;
@@ -823,7 +807,6 @@ function insertComment(event) {
     }
 
 }
-
 function changeProfile() {
     //se mandará una petición a la Api para conseguir el perfil 
     //si todo sale bien se cargará la nueva info en pantalla
