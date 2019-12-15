@@ -213,40 +213,34 @@ function cleanErrores(listElements) {
     }
 }
 
-/***************************** CHEKS ********************************/
-function validateTerms(element) {
+
+function validateBornDatePet(element) {
 
     let alert = document.getElementById("alert");
     let alertMessage = document.getElementById("alertMessage");
-    let isChecked = element.checked;
+    let valor = element.value;
+    let ano = parseInt(valor.substring(0, 4));
+    let mes = parseInt(valor.substring(5, 7)) - 1;
+    let dia = parseInt(valor.substring(8, valor.length));
 
-    console.log(isChecked);
+    let fch = new Date(ano, mes, dia);
+    //console.log(fch);
+    //console.log(isNaN(fch));
 
-    if (isChecked) {
-        alertMessage.innerHTML = "";
-        element.classList.remove("error");
-        alert.style.display = "none";
-        return true;
-
-    } else {
+    if (isNaN(fch)) {
         alert.style.display = "inline";
-        alertMessage.innerHTML = "Debe aceptar los términos y condiciones.";
+        alertMessage.innerHTML = "Error al seleccionar la fecha de nacimiento.";
         element.classList.add("error");
         element.focus();
         return false;
 
-    }
-}
-
-function checkRemember(element) {
-    let isChecked = element.checked;
-
-    if (isChecked) {
-        return true;
-
     } else {
-        return false;
+        alertMessage.innerHTML = "";
+        element.classList.remove("error");
+        alert.style.display = "none";
+        return true;
     }
+
 }
 
 /**************************************
@@ -301,7 +295,7 @@ function validateLogin() {
  **************************************/
 function validateRegistration() {
     event.preventDefault();
-    
+
     let name = document.getElementById("name");
     let email = document.getElementById("email");
     let password = document.getElementById("password");
@@ -315,38 +309,38 @@ function validateRegistration() {
         validateRepeatPassword(password, repeatPassword) && validateBornDate(bornDate) &&
         validateTerms(agree)) {
 
-            var userInsert = {
-                "username" : name.value,
-                "email" : email.value,
-                "password": password.value,
-                "bornDate" : bornDate.value
-            }
+        var userInsert = {
+            "username": name.value,
+            "email": email.value,
+            "password": password.value,
+            "bornDate": bornDate.value
+        }
 
-            var url = "http://localhost:8080/api/v0/users";
+        var url = "http://localhost:8080/api/v0/users";
 
-            fetch(url, {
-                    method: 'POST',
-                    body: JSON.stringify(userInsert),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function (response) {
-                    if (response.ok) {
-    
-                        response.json().then(function (myJson) {                               
-                            console.log(myJson);
-                            sessionStorage.setItem('user', JSON.stringify(myJson));
-                            window.location.href = "http://127.0.0.1:5500/index.html";
-    
-                        });
-    
-                    } else {
-                        console.log('Respuesta de red OK.');
-                    }
-                })
-                .catch(function (error) {
-                    console.log('Hubo un problema con la petición Fetch:' + error.message);
-                });
+        fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(userInsert),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
+                if (response.ok) {
+
+                    response.json().then(function (myJson) {
+                        console.log(myJson);
+                        sessionStorage.setItem('user', JSON.stringify(myJson));
+                        window.location.href = "http://127.0.0.1:5500/index.html";
+
+                    });
+
+                } else {
+                    console.log('Respuesta de red OK.');
+                }
+            })
+            .catch(function (error) {
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+            });
 
     }
 
@@ -371,7 +365,7 @@ function validateEditUser(event) {
         //Se guarda en el localStorage y se redirige a index.html
         var userModif = JSON.parse(sessionStorage.getItem('user'));
         userModif.username = name.value;
-        userModif.password = password.value; 
+        userModif.password = password.value;
 
         alert(JSON.stringify(userModif));
 
@@ -414,6 +408,7 @@ function validateProfile(event) {
     event.preventDefault();
 
     var radioChecekd = false;
+
 
     let nick = document.getElementById("nickEdit");
     let raza = document.getElementById("razaEdit");
@@ -493,35 +488,6 @@ function validateProfile(event) {
 }
 
 
-function validateBornDatePet(element) {
-
-    let alert = document.getElementById("alert");
-    let alertMessage = document.getElementById("alertMessage");
-    let valor = element.value;
-    let ano = parseInt(valor.substring(0, 4));
-    let mes = parseInt(valor.substring(5, 7)) - 1;
-    let dia = parseInt(valor.substring(8, valor.length));
-
-    let fch = new Date(ano, mes, dia);
-    //console.log(fch);
-    //console.log(isNaN(fch));
-
-    if (isNaN(fch)) {
-        alert.style.display = "inline";
-        alertMessage.innerHTML = "Error al seleccionar la fecha de nacimiento.";
-        element.classList.add("error");
-        element.focus();
-        return false;
-
-    } else {
-        alertMessage.innerHTML = "";
-        element.classList.remove("error");
-        alert.style.display = "none";
-        return true;
-    }
-
-}
-
 /**************************************
  ************** COOKIES ***************
  **************************************/
@@ -541,4 +507,40 @@ function checkCookie() {
         document.getElementById("emailLogin").value = mail;
     }
 
+}
+
+/***************************** CHEKS ********************************/
+function validateTerms(element) {
+
+    let alert = document.getElementById("alert");
+    let alertMessage = document.getElementById("alertMessage");
+    let isChecked = element.checked;
+
+    console.log(isChecked);
+
+    if (isChecked) {
+        alertMessage.innerHTML = "";
+        element.classList.remove("error");
+        alert.style.display = "none";
+        return true;
+
+    } else {
+        alert.style.display = "inline";
+        alertMessage.innerHTML = "Debe aceptar los términos y condiciones.";
+        element.classList.add("error");
+        element.focus();
+        return false;
+
+    }
+}
+
+function checkRemember(element) {
+    let isChecked = element.checked;
+
+    if (isChecked) {
+        return true;
+
+    } else {
+        return false;
+    }
 }

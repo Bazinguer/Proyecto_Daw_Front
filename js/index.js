@@ -9,13 +9,13 @@ function eventsLoad() {
         }
     }
 
-    //Cargamos todolos eventos
+    //Cargamos todolos eventos principales
     //evento logo
     document.getElementById("logoApp").addEventListener("click", loadTabPanel, true);
     //evento buscador principal
     document.getElementById("globalSearch").addEventListener("click", globalSearch, true);
     //evento Configuración
-    document.getElementById("config").addEventListener("click", editConfig, true);
+    document.getElementById("config").addEventListener("click", editConfigUser, true);
     //evento contacta
     document.getElementById("contacta").addEventListener("click", contacta, true);
     //evento cerrarSesión
@@ -35,6 +35,44 @@ function eventsLoad() {
     cardColumn();
 }
 
+function cardColumn() {
+
+    //evento crearPerfil (+)
+    document.getElementById("createProfile").addEventListener("click", createProfile, true);
+    //evento cambioPerfil (V)
+    document.getElementById("changeProfile").addEventListener("click", changeProfile, true);
+    //evento deletePerfil (X)
+    document.getElementById("deleteProfile").addEventListener("click", deleteProfile, true);
+
+    //evento logo
+    document.getElementById("imgProfile").addEventListener("click", loadTabPanel, true);
+
+    var listprofiles = JSON.parse(sessionStorage.getItem("listpetprofiles"));
+    var petProfile = JSON.parse(sessionStorage.getItem("petprofiles"));
+
+    var string = "";
+
+    if (sessionStorage.getItem("listpetprofiles")) {
+        for (let i = 0; i < listprofiles.length; i++) {
+            string += "<div class='form-check d-flex'>";
+            string += "<input type='radio' class='form-check-input' name='custom' value=" + listprofiles[i].id + " id='" + listprofiles[i].nick + "'>";
+            string += "<label class='form-check-label'>" + listprofiles[i].nick + "</label>";
+            string += "</input></div>";
+
+            if (petProfile.nick === listprofiles[i].nick) {
+                var valorRadio = listprofiles[i].nick;
+                var valorIdRadio = listprofiles[i].id;
+            }
+        }
+    }
+    document.getElementById("forProfiles").innerHTML = string;
+
+    var radioButton = document.getElementById("" + valorRadio + "");
+    if (radioButton.value === String(valorIdRadio)) {
+        radioButton.checked = true;
+    }
+
+}
 
 function globalSearch() {
     //primero cargamos formulario de busqueda,y evento del btn de búsqueda 
@@ -83,7 +121,7 @@ function globalSearch() {
 
                                             console.log(element.imgProfile);
 
-                                            //addPhotos     data-toggle='modal' data-target='#exampleModal'"                 
+                                            //addPhotos            
                                             string += "<div class='col-sm-3 mt-2'>";
                                             string += "<div class='card'";
                                             string += "<a href='#' onClick='loadTabPanelVisit(event)'>";
@@ -134,6 +172,8 @@ function loadTabPanelVisit(event) {
                     //cargamos eventos que tiene el fragmento                    
                     document.getElementById("createProfile").addEventListener("click", createProfile, true);
                     document.getElementById("photos-tab").addEventListener("click", searchPhotos(element.id), true);
+
+                    document.getElementById("editProfile").style.display = "none";
 
 
                     fetch('http://localhost:8080/api/v0/petprofile?petProfileId=' + element.id)
@@ -238,10 +278,8 @@ function serchByNick(event) {
                         string += "</a>";
                         string += "</div>";
                         string += "</div>";
-                
 
-                    //se van añadiendo las cartas de los perfiles al div id=resultadoBusqueda
-                    document.getElementById("changeContent").innerHTML = string;
+                        document.getElementById("changeContent").innerHTML = string;
 
                     });
 
@@ -268,6 +306,52 @@ function createProfile() {
                 response.text().then(function (miText) {
 
                     document.getElementById("changeContent").innerHTML = miText
+
+                    let nick = document.getElementById("nickEdit");
+                    let raza = document.getElementById("razaEdit");
+                    let bornPetDate = document.getElementById("bornPetDate");
+                    let description = document.getElementById("descriptionProfile");
+                    let sexo = document.getElementsByName("sexo");
+
+                    if (sessionStorage.getItem("petprofiles")) {
+
+                        let petprofile = JSON.parse(sessionStorage.getItem('petprofiles'));
+
+                        let ano = parseInt(petprofile.petBornDate.substring(0, 4));
+                        let mes = parseInt(petprofile.petBornDate.substring(5, 7));
+                        let dia = parseInt(petprofile.petBornDate.substring(8, petprofile.length));
+                        let fch = new Date(ano, mes, dia);                      
+
+                        if (!isNaN(fch)){                         
+
+                            if(dia < 10){ 
+                                dia = "0"+dia;
+                            }
+
+                            alert(String(ano)+String(mes)+String(dia))
+                            bornPetDate.value = ano+"-"+mes+"-"+dia;
+                        }
+
+                        for (let index = 0; index < sexo.length; index++) {
+                            let element = sexo[index];
+
+                            if (element.value == "h") {
+                                element.checked = true;
+                                
+                            } else if(element.value == "m"){
+                                element.checked = true;
+                            }
+                            
+                        }
+
+                        sexo.value = petprofile.sexo;
+
+                        nick.value = petprofile.nick;
+                        nick.readOnly = true;
+                        raza.value = petprofile.raza;                        
+                        description.value = "";
+
+                    }
 
                     //cargamos eventos que tiene el fragmento
                     document.getElementById("btnCreateProfile").addEventListener("click", validateProfile, true);
@@ -323,7 +407,7 @@ function deleteProfile() {
     }
 }
 
-function editConfig() {
+function editConfigUser() {
     //primero cargamos formulario de modificar,y evento del btn modificar y salir 
     //si modifica, lanzamos peticion a Api    
     fetch('formEditUser.html')
@@ -495,7 +579,12 @@ function loadTabPanel() {
 
                     //cargamos eventos que tiene el fragmento                    
                     document.getElementById("createProfile").addEventListener("click", createProfile, true);
+                    document.getElementById("editProfile").addEventListener("click", editDescriptionPet, true);
+                    document.getElementById("editProfile").style.display = "initial";
+
                     document.getElementById("photos-tab").addEventListener("click", searchPhotos(infoProfile.id), true);
+
+                   
 
                     let year = parseInt(infoProfile.petBornDate.substring(0, 4));
                     let today = new Date();
@@ -555,6 +644,11 @@ function loadTabPanel() {
         .catch(function (error) {
             console.log('Hubo un problema con la petición Fetch:' + error.message);
         });
+
+}
+
+function editDescriptionPet() {
+    createProfile();
 
 }
 
@@ -717,7 +811,7 @@ function insertComment(event) {
                 }
             }).then(function (response) {
 
-                response.text().then(function (myText) {               
+                response.text().then(function (myText) {
 
                     loadPhotoComments(parseInt(myText));
                 });
@@ -726,42 +820,6 @@ function insertComment(event) {
             .catch(function (error) {
                 console.log('Hubo un problema con la petición Fetch:' + error.message);
             });
-    }
-
-}
-
-function cardColumn() {
-
-    //evento crearPerfil (+)
-    document.getElementById("createProfile").addEventListener("click", createProfile, true);
-    //evento cambioPerfil (V)
-    document.getElementById("changeProfile").addEventListener("click", changeProfile, true);
-    //evento deletePerfil (X)
-    document.getElementById("deleteProfile").addEventListener("click", deleteProfile, true);
-
-    var listprofiles = JSON.parse(sessionStorage.getItem("listpetprofiles"));
-    var petProfile = JSON.parse(sessionStorage.getItem("petprofiles"));
-
-    var string = "";
-
-    if (sessionStorage.getItem("listpetprofiles")) {
-        for (let i = 0; i < listprofiles.length; i++) {
-            string += "<div class='form-check d-flex'>";
-            string += "<input type='radio' class='form-check-input' name='custom' value=" + listprofiles[i].id + " id='" + listprofiles[i].nick + "'>";
-            string += "<label class='form-check-label'>" + listprofiles[i].nick + "</label>";
-            string += "</input></div>";
-
-            if (petProfile.nick === listprofiles[i].nick) {
-                var valorRadio = listprofiles[i].nick;
-                var valorIdRadio = listprofiles[i].id;
-            }
-        }
-    }
-    document.getElementById("forProfiles").innerHTML = string;
-
-    var radioButton = document.getElementById("" + valorRadio + "");
-    if (radioButton.value === String(valorIdRadio)) {
-        radioButton.checked = true;
     }
 
 }

@@ -57,19 +57,14 @@ a:hover {
     background-color: rgb(109, 109, 109);
 }
 
-/*
-a:hover{   
+
+#imgProfile:hover{   
     background-color: #cfcfcf;
     color: brown;
     border-radius: 10px;
+    cursor: pointer;
 } 
 
-#ocultarCajaCom { 
-    display: none;
-}
-
-
-*/
 
 #mostrarCajaCom {
     display: none;
