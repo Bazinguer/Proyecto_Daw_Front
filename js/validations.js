@@ -1,5 +1,4 @@
 window.onload = eventsLoad;
-
 /***************************** EVENTOS ********************************/
 function eventsLoad() {
     console.log(window.location.href);
@@ -70,7 +69,6 @@ function validateName(element) {
     }
 
 }
-
 function validateMail(element) {
     //estructura de un mail:  nombre de usuario + @ + servidor + dominio
     //[a-zA-Z0-9._-]+ hace que se repitan letras, números, puntos (.), guiones bajos (_) o guiones (-).
@@ -95,7 +93,6 @@ function validateMail(element) {
         return true;
     }
 }
-
 function validatePassword(element) {
     //recogemos el valor y el nombre del input para saber el element que tratamos 
     //y poder devolverle el foco      
@@ -141,7 +138,6 @@ function validatePassword(element) {
     }
 
 }
-
 function validateRepeatPassword(element, elementCompare) {
     let alert = document.getElementById("alert");
     let alertMessage = document.getElementById("alertMessage");
@@ -165,7 +161,6 @@ function validateRepeatPassword(element, elementCompare) {
     }
 
 }
-
 function validateBornDate(element) {
 
     //para validater la fecha, compruebo si puedo construir una fecha con 
@@ -204,7 +199,6 @@ function validateBornDate(element) {
     }
 
 }
-
 function cleanErrores(listElements) {
     //limpiamos algún posible error de otra parte del formulario
     let errores = listElements;
@@ -212,8 +206,6 @@ function cleanErrores(listElements) {
         errores[i].classList.remove("error");
     }
 }
-
-
 function validateBornDatePet(element) {
 
     let alert = document.getElementById("alert");
@@ -295,7 +287,6 @@ function validateLogin() {
  **************************************/
 function validateRegistration() {
     event.preventDefault();
-
     let name = document.getElementById("name");
     let email = document.getElementById("email");
     let password = document.getElementById("password");
@@ -315,9 +306,7 @@ function validateRegistration() {
             "password": password.value,
             "bornDate": bornDate.value
         }
-
         var url = "http://localhost:8080/api/v0/users";
-
         fetch(url, {
                 method: 'POST',
                 body: JSON.stringify(userInsert),
@@ -331,9 +320,7 @@ function validateRegistration() {
                         console.log(myJson);
                         sessionStorage.setItem('user', JSON.stringify(myJson));
                         window.location.href = "http://127.0.0.1:5500/index.html";
-
                     });
-
                 } else {
                     console.log('Respuesta de red OK.');
                 }
@@ -341,9 +328,7 @@ function validateRegistration() {
             .catch(function (error) {
                 console.log('Hubo un problema con la petición Fetch:' + error.message);
             });
-
     }
-
 }
 
 /**************************************
@@ -398,7 +383,6 @@ function validateEditUser(event) {
 
     }
 }
-
 
 /**************************************
  ****** VALIDAR EDITAR PEERFIL ********
@@ -487,7 +471,6 @@ function validateProfile(event) {
 
 }
 
-
 /**************************************
  ************** COOKIES ***************
  **************************************/
@@ -497,7 +480,6 @@ function getCookie() {
     let resultado = cookie.split('=');
     return resultado[1];
 }
-
 function checkCookie() {
     let mail = getCookie("email");
 
@@ -533,7 +515,6 @@ function validateTerms(element) {
 
     }
 }
-
 function checkRemember(element) {
     let isChecked = element.checked;
 

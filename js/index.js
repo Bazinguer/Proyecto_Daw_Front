@@ -1,14 +1,11 @@
 window.onload = eventsLoad;
 /***************************** EVENTOS ********************************/
-function eventsLoad() {
-    console.log(window.location.href);
-
+function eventsLoad() {    
     if (window.location.href === "http://127.0.0.1:5500/index.html") {
         if (!sessionStorage.getItem("user")) {
             window.location.href = "http://127.0.0.1:5500/login.html";
         }
     }
-
     //Cargamos todolos eventos principales
     //evento logo
     document.getElementById("logoApp").addEventListener("click", loadTabPanel, true);
@@ -23,10 +20,12 @@ function eventsLoad() {
     //evento buscador nick
     document.getElementById("serchBynick").addEventListener("click", serchByNick, true);
 
-    if (!sessionStorage.getItem("petprofiles") && !sessionStorage.getItem("listpetprofiles") && sessionStorage.getItem("user")) {
+    if (!sessionStorage.getItem("petprofiles") && !sessionStorage.getItem("listpetprofiles") &&
+     sessionStorage.getItem("user")) {
         choosePetProfile(false);
         choosePetProfile(true);
-    } else if (!sessionStorage.getItem("petprofiles") && sessionStorage.getItem("listpetprofiles") && sessionStorage.getItem("user")) {
+    } else if (!sessionStorage.getItem("petprofiles") && sessionStorage.getItem("listpetprofiles") &&
+     sessionStorage.getItem("user")) {
         choosePetProfile(true);
     } else {
         loadTabPanel();
@@ -561,19 +560,13 @@ function loadTabPanel() {
                 response.text().then(function (miText) {
 
                     document.getElementById("changeContent").innerHTML = miText
-
-
                     //recuperamos valores del sessionStorage = petprofiles para pintarlos                        
                     let infoProfile = JSON.parse(sessionStorage.getItem("petprofiles"));
-
                     //cargamos eventos que tiene el fragmento                    
                     document.getElementById("createProfile").addEventListener("click", createProfile, true);
                     document.getElementById("editProfile").addEventListener("click", editDescriptionPet, true);
                     document.getElementById("editProfile").style.display = "initial";
-
-                    document.getElementById("photos-tab").addEventListener("click", searchPhotos(infoProfile.id), true);
-
-                   
+                    document.getElementById("photos-tab").addEventListener("click", searchPhotos(infoProfile.id), true);                   
 
                     let year = parseInt(infoProfile.petBornDate.substring(0, 4));
                     let today = new Date();
@@ -810,15 +803,12 @@ function insertComment(event) {
 function changeProfile() {
     //se mandará una petición a la Api para conseguir el perfil 
     //si todo sale bien se cargará la nueva info en pantalla
-
     let customProfile = document.getElementsByName("custom");
-
     for (i = 0; i < customProfile.length; i++) {
         if (customProfile[i].checked) {
             var valorCustomId = customProfile[i].value;
         }
     }
-
     if (confirm("Está seguro que quiere cambiar de perfil?")) {
         console.log(sessionStorage.getItem("changeprofile"));
         fetch('http://localhost:8080/api/v0/petprofile?petProfileId=' + valorCustomId)

@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Registro</title>
-
 	<!-- minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<!-- Personal CSS -->
 	<link rel="stylesheet" type="text/css" href="css/login_register.css">
-
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script defear src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -20,82 +17,79 @@
 	<!-- Personal JavaScript -->
 	<script defear type="text/JavaScript" src="js/validations.js"></script>
 </head>
-
 <body class="login_register">
-	
-		<div class="container-fluid">
-			<div class="row justify-content-md-center">
-				<div class="card-wrapper">
-					<div class="brand">
-						<img src="img/imagenes-clipart-sin-copyright-transparent.png" alt="logo">
-					</div>
-					<div class="card fat">
-						<div class="card-body">
-							<h4 class="card-title">Registro</h4>
-							<div id="alert">
-								<div class="alert alert-danger" role="alert">
-									<p id="alertMessage"></p>
+	<div class="container-fluid">
+		<div class="row justify-content-md-center">
+			<div class="card-wrapper">
+				<div class="brand">
+					<img src="img/imagenes-clipart-sin-copyright-transparent.png" alt="logo">
+				</div>
+				<div class="card fat">
+					<div class="card-body">
+						<h4 class="card-title">Registro</h4>
+						<div id="alert">
+							<div class="alert alert-danger" role="alert">
+								<p id="alertMessage"></p>
+							</div>
+						</div>
+						<form action="#" method="POST" id="register-validation">
+							<div class="form-group">
+								<label for="name">Nombre:</label>
+								<input id="name" type="text" class="form-control" name="name" />
+							</div>
+
+							<div class="form-group">
+								<label for="email">Dirección E-Mail:</label>
+								<input id="email" type="email" class="form-control" name="email" required>
+							</div>
+
+							<div class="form-group">
+								<label for="password">Contraseña:</label>
+								<input id="password" type="password" class="form-control" name="password" required>
+							</div>
+
+							<div class="form-group">
+								<label for="repeatPassword">Repita Contraseña:
+								</label>
+								<input id="repeatPassword" type="password" class="form-control" name="repeatPassword"
+									required>
+							</div>
+
+							<div class="form-group">
+								<label for="bornDate">Fecha de Nacimiento:
+								</label>
+								<input id="bornDate" type="date" class="form-control" name="bornDate" required>
+							</div>
+
+							<div class="form-group">
+								<div class="custom-checkbox custom-control">
+									<input type="checkbox" name="agree" id="agree" class="custom-control-input"
+										required>
+									<label for="agree" class="custom-control-label">Estoy de acuerdo con los <a
+											href="#">Términos y condiciones</a></label>
 								</div>
 							</div>
-							<form action="#" method="POST" id="register-validation">
-								<div class="form-group">
-									<label for="name">Nombre:</label>
-									<input id="name" type="text" class="form-control" name="name" />
-								</div>
 
-								<div class="form-group">
-									<label for="email">Dirección E-Mail:</label>
-									<input id="email" type="email" class="form-control" name="email" required>
-								</div>
-
-								<div class="form-group">
-									<label for="password">Contraseña:</label>
-									<input id="password" type="password" class="form-control" name="password" required>
-								</div>
-
-								<div class="form-group">
-									<label for="repeatPassword">Repita Contraseña:
-									</label>
-									<input id="repeatPassword" type="password" class="form-control"
-										name="repeatPassword" required>
-								</div>
-
-								<div class="form-group">
-									<label for="bornDate">Fecha de Nacimiento:
-									</label>
-									<input id="bornDate" type="date" class="form-control" name="bornDate" required>
-								</div>
-
-								<div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="agree" id="agree" class="custom-control-input"
-											required>
-										<label for="agree" class="custom-control-label">Estoy de acuerdo con los <a
-												href="#">Términos y condiciones</a></label>
-									</div>
-								</div>
-
-								<div class="form-group m-0">
-									<button type="submit" id="btnRegister" class="btn btn-primary btn-block">
-										Registrar
-									</button>
-								</div>
-								<div class="mt-4 text-center">
-									¿Ya eres usuario? Accede usando tus credenciales.
-									<p>
-										<a href="login.html">Login</a>
-									</p>
-								</div>
-							</form>
-						</div>
+							<div class="form-group m-0">
+								<button type="submit" id="btnRegister" class="btn btn-primary btn-block">
+									Registrar
+								</button>
+							</div>
+							<div class="mt-4 text-center">
+								¿Ya eres usuario? Accede usando tus credenciales.
+								<p>
+									<a href="login.html">Login</a>
+								</p>
+							</div>
+						</form>
 					</div>
-					<div class="footer">
-						Copyright &copy; 2019 &mdash; FP DAW
-					</div>
+				</div>
+				<div class="footer">
+					Copyright &copy; 2019 &mdash; FP DAW
 				</div>
 			</div>
 		</div>
-	
+	</div>
 </body>
 
 </html>
