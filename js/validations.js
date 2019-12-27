@@ -350,9 +350,7 @@ function validateEditUser(event) {
         //Se guarda en el localStorage y se redirige a index.html
         var userModif = JSON.parse(sessionStorage.getItem('user'));
         userModif.username = name.value;
-        userModif.password = password.value;
-
-        alert(JSON.stringify(userModif));
+        userModif.password = password.value;     
 
         var url = 'http://localhost:8080/api/v0/users';
         fetch(url, {

@@ -323,8 +323,7 @@ function createProfile() {
                             if(dia < 10){ 
                                 dia = "0"+dia;
                             }
-
-                            alert(String(ano)+String(mes)+String(dia))
+                         
                             bornPetDate.value = ano+"-"+mes+"-"+dia;
                         }
 
@@ -342,8 +341,7 @@ function createProfile() {
 
                         sexo.value = petprofile.sexo;
 
-                        nick.value = petprofile.nick;
-                        nick.readOnly = true;
+                        nick.value = petprofile.nick;                      
                         raza.value = petprofile.raza;                        
                         description.value = "";
 
